@@ -53,7 +53,7 @@
                             @endif
 
                             <label for="pais" class="r_titulo">Pais</label>
-                            <select class="r_txt" name="pais">
+                            <select class="r_txt" id="pais" name="pais">
                                 <option value="AF">Afganistán</option>
                                 <option value="AL">Albania</option>
                                 <option value="DE">Alemania</option>
@@ -292,7 +292,21 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Id Persona') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required>
+
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('idtipo_usuario') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Id Tipo Usuario') }}</label>
 
                             <div class="col-md-6">
                                 <input id="idtipo_usuario" type="text" class="form-control{{ $errors->has('idtipo_usuario') ? ' is-invalid' : '' }}" name="idtipo_usuario" value="{{ old('idtipo_usuario') }}" required>
@@ -305,6 +319,7 @@
                             </div>
                         </div>
 
+                        
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Id Persona') }}</label>
 
