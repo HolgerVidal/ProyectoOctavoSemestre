@@ -1,0 +1,117 @@
+.botonLogin{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: #ddd;
+	border-radius: 15px;
+}
+
+.botonLogin p{
+	margin-left: 10px;
+}
+
+.botonLogin img{
+	width: 50px;
+	border-radius: 30px;
+}
+
+.botonLogin:hover{
+	background-color: #007bff;
+	color: #ffff;
+}
+
+.botonLogin:hover .fa{
+	color: #ffff;
+}
+
+.add-comentario{
+	width: 100%;
+}
+
+.btn-comentar{
+	margin-top: 15px;
+}
+
+.num-comentario p{
+	float: left;
+	padding-right: 5px;
+}
+
+.n-comentarios{
+	color:#5cb85c;
+}
+
+
+/*CLASES PARA HACER DESAPARECER UN MENU*/
+
+.contenido-menu{
+	background-color: #f8f9fa;
+}
+
+.contenido-menu .titulo-contenido{
+	border-top-style: solid;
+	border: 2px;
+	display: block;
+	border-radius: 5px;
+	padding: 10px;
+
+}
+
+.contenido-menu .titulo-contenido i{
+	padding-right: 10px;
+}
+
+.contenido-menu .titulo-contenido:hover {
+	background-color: #ddd;
+	cursor: pointer;
+	cursor: hand;
+}
+
+
+.contenido-menu-hideitem{
+	display: none;
+}
+
+.contenido-menu-showitem{
+	background-color: #ddd;
+}
+
+
+.contenido-menu ul li a{
+	padding-left: 5px;
+}
+
+.contenido-menu a p{
+
+}
+
+/*ESTILOS PARA LA VENTANA DE ADMINISTRADOR DE PUBLICACIONES*/
+
+/*estilos para la seccion del editor de texto*/
+.areaeditor{
+
+}
+/*fin de estilo para la seccion del editor de texto*/
+
+
+/* ESTILOS PARA LAS VISTAS DE REGISTRO Y LOGIN */
+.r_titulo{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.r_txt{
+	width: 100%;
+    padding: 11px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+.r_txt:focus{
+	background-color: #ddd;
+    outline: none;
+}
+
+/* FINAL DE ESTILOS PARA LAS VISTAS DE REGISTRO Y LOGIN */

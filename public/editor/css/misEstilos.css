@@ -1,0 +1,12 @@
+.botonH{
+	padding: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color:#a0aab3;
+	color: black;
+}
+
+.botonH:hover{
+	background-color: #a0aab3;
+	color: white;
+}
