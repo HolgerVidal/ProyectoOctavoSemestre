@@ -27,3 +27,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/administrar_info_eder', function () {
     return view('ventanasAdministrador.ventanaInicialAdmin');
 })->name('administrar_info_eder');
+
+//xxxmaron porno
