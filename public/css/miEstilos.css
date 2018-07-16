@@ -106,7 +106,8 @@
     margin: 5px 0 22px 0;
     display: inline-block;
     border: none;
-    background: #f1f1f1;
+	background: #f1f1f1;
+	border: 1px solid #ddd;
 }
 
 .r_txt:focus{
@@ -115,3 +116,117 @@
 }
 
 /* FINAL DE ESTILOS PARA LAS VISTAS DE REGISTRO Y LOGIN */
+
+
+/*INICIO DE LOS ESTILOS PARA LA VENTANA DE MODIFICAR EL CONTENIDO*/
+.adm_contenedor{
+	
+	padding: 5px 6px 0px 6px; /*arrib der abj izq*/
+	border-radius: 5px;
+	border-style: solid;
+    border-width: 1px;
+	border-color: #a0aab3;
+	height: 100%;
+}
+
+.adm_subtitulos{
+	color: #28a745;
+	width: 100%;
+	font-weight: bold;
+	padding-left: 15px;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+.adm_subtitulos hr{
+	border-color: #4fc76b;
+	margin-top: 5px;
+}
+
+.adm_listado{
+	max-height: 453px;
+	margin: 1px 15px 5px 15px; /*arrib der abj izq*/
+	border-radius: 5px;
+	border-style: solid;
+    border-width: 1px;
+	border-color: #a0aab3;
+}
+
+.adm_boton_add{
+	widows: 100%;
+	margin: 5px 15px 5px 15px; /*arrib der abj izq*/
+}
+
+.adm_txt{
+	widows: 100%;
+	margin: 5px 5px 5px 5px; /*arrib der abj izq*/
+}
+
+.adm_txt_input{
+	margin-bottom: 0;
+}
+
+
+/*Estilos para la lista de contenedores*/
+
+.adm_guardado_1{
+	margin:5px 5px 5px 5px; /*arrib der abj izq*/
+	padding-bottom: 40px;
+}
+.adm_guardado_1 hr{
+	margin-top: 0;
+	margin-bottom: 0px;
+	visibility: hidden;
+}
+
+.adm_guardado_1 br{
+	display: none;
+}
+.adm_guardado_1 strong{
+	float: left;
+	padding-left: 10px;
+	margin-right: 12px;
+	border-left: 1px solid #3c992b;
+}
+
+.adm_guardado_1 button{
+	float: right;
+}
+
+.adm_guardado_2{
+	margin:5px 5px 5px 5px;
+}
+.adm_guardado_2 hr{
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+/*Final de estilos para la lista de contenedores*/
+
+
+
+.btn_adm{
+	margin-right: 7px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #5cb85c;
+	background-color:white;
+	border-radius: 6px;
+}
+
+.btn_adm:hover{
+	background-color:#5cb85c;
+	color: white;
+}
+
+.adm_mensaje_error{
+	margin-left: 15px;
+    margin-right: 12px;
+}
+
+
+/*para la parte de los titulos y que quienes somos*/
+.adm_area_titulos{
+	background-color: #e4e4e448;
+}
+/*DE LA IFORMACION DE LA METODOLOGIA EDER AJAJJAS*/

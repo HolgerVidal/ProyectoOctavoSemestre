@@ -35,7 +35,7 @@
     <!-- final de importacion de estilos para el editor de texto -->
 
 </head>
-<body>
+<body >
     <div id="app">
         
         <header class="site-header-1 site-header">
@@ -99,12 +99,14 @@
                                         <li><a href="#">Contactos</a></li>
                                         @guest
                                         @else
-                                            <li><a href="#">Administrador</a>
-                                                <ul>
-                                                    <li><a href="{{route('administrar_info_eder')}}">Informacion Eder</a></li>
-                                                    <li><a href="#">Reportes</a></li>
-                                                </ul>
-                                            </li>
+                                            @if( Auth::user()->idtipo_usuario =='1')
+                                                <li><a href="#">Administrador</a>
+                                                    <ul>
+                                                        <li><a href="{{route('administrar_info_eder')}}">Informacion Eder</a></li>
+                                                        <li><a href="#">Reportes</a></li>
+                                                    </ul>
+                                                </li>
+                                            @endif                
                                         @endguest
                                     </ul>
                             </nav>
@@ -117,7 +119,6 @@
                                     {{ Auth::user()->name }}    <a href="#"><i class="fa fa-bars"></i></a>                                    
                                 @endguest
                             </div> -->
-
 
                             <div id="btn-offcanvas-menu" class="header-buttons pull-right hidden-xs hidden-sm botonLogin">
                                 @guest
@@ -195,7 +196,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/paginaPrincipal.js') }}"></script>
     <script src="{{ asset('js/IR_pagina.js') }}"></script>
-
+    <script src="{{ asset('js/administradorContenido.js') }}"></script>
 
     <!-- IMPORTACIONES DE EDITOR DE TEXTO -->
     <script type="text/javascript" src="editor/js/jquery-1.12.0.js"></script>
@@ -203,7 +204,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('#txt-content').Editor();
-            $('#txt-content').Editor('setText', ['<p style="color:Black;">Ingrese un nuevo contenido...</p>']);
+            // $('#txt-content').Editor('setText', ['<p style="color:Black;">Ingrese un nuevo contenido...</p>']);
             $('#btn-enviar').click(function(e){
                 e.preventDefault();
             // $('#txt-content').text($('#txt-content').Editor('getText'));
