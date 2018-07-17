@@ -21,11 +21,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 // ruta para llamar a la vista de administrador
 // de la informacion de la pagina principal
 Route::get('/administrar_info_eder', function () {
     return view('ventanasAdministrador.ventanaInicialAdmin');
 })->name('administrar_info_eder');
 
-//xxxmaron porno
+//Ruta para comentarios 
+Route::resource('/addComentario', 'ComentarioController');

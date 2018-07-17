@@ -66,7 +66,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script> 
     <script src="{{ asset('js/prueba.js') }}"></script>
+    <script src="{{ asset('js/paginaPrincipal.js') }}"></script> 
 </body>
 </html>

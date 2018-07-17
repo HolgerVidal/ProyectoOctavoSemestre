@@ -15,9 +15,11 @@
                     <i class="fa fa-user"></i>
                     <a href="#">Autor</a>
                 </span>
-                <span class="comment-link"> 
+                <span class="comment-link">
+                  @if(isset($comentario)) 
                     <i class="fa fa-comments-o"></i>                                           
-                    <a href="#">x comentarios</a>
+                    <a href="#"> {{$comentario->fecha}} comentarios</a>
+                  @endif  
                 </span>    
             </div>
             <div class="hr"></div>
