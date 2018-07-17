@@ -3,9 +3,13 @@
         <h3 class="widget-title">¿Quienes Somos?</h3>
         <div class="tiny-border">           </div>                                         
         <div class="textwidget" id="quienes-somos">
-            <p>Informacion con respecto a los desarrolladores de esta pagina, y el objejtivo
-                de difundir esta metodologia.
-            </p>                              
+            @if(isset($opciones))
+            @foreach ($opciones as $n)
+            @if($n->nombre =="somos")
+            <p style="text-align: justify;"> {{$n->valor}} </p>
+            @endif
+            @endforeach
+            @endif                             
         </div>
     </aside>
 <!--     <aside class="widget widget_search">
