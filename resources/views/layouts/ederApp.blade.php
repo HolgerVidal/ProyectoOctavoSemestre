@@ -92,7 +92,7 @@
                                                 <li><a href="#">Nuevo Foro</a></li>
                                                 <li><a href="#">Mis Foros</a></li>
                                                 @endguest
-                                                <li><a href="#">Lista de Foros</a></li>
+                                                <li><a href="{{ route('listaforos') }}">Lista de Foros</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#">Documentación</a></li>
