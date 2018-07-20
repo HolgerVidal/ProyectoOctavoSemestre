@@ -1,4 +1,3 @@
-
 @extends('layouts.ederApp')
 
 @section('content')
@@ -19,51 +18,12 @@
                         </div>
                         <div id="datos_persona" class="row">
                             <div class="col-md-6">
-<<<<<<< HEAD
-                                <label for="name" class="r_titulo">Nombres</label>
-                                <input id="nombres" type="text" placeholder="Ingrese sus nombres" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="nombres" value="{{ old('nombres') }}" required >
-                                @if ($errors->has('nombres'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-=======
                                 <label for="nombres" class="r_titulo">Nombres</label>
                                 <input id="nombres" type="text" placeholder="Ingrese sus nombres" class="form-control{{ $errors->has('nombres') ? ' is-invalid' : '' }}" name="nombres" value="{{ old('nombres') }}" required >
->>>>>>> 8a8c3288b78078fd7abaca3a9b530b8e446940b5
                             </div>
 
                             <div class="col-md-6">
                                 <label for="name" class="r_titulo">Apellidos</label>
-<<<<<<< HEAD
-                                <input id="apellidos" type="text" placeholder="Ingrese sus apellidos" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} " name="apellidos" value="{{ old('apellidos') }}" required >
-                                @if ($errors->has('apellidos'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('apellidos') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="name" class="r_titulo">Cedula</label>
-                                <input id="cedula" type="text" placeholder="Ingrese su cedula" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} " name="cedula" value="{{ old('cedula') }}" required >
-                                @if ($errors->has('cedula'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('cedula') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="sexo" class="r_titulo">Sexo</label>
-                                <select type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="sexo"  placeholder="Sexo"  style="height: auto;"  required>
-                                    <option class="r_txt">Masculino</option>
-                                    <option class="r_txt">Femenino</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-6">
-=======
                                 <input id="apellidos" type="text" placeholder="Ingrese sus apellidos" class="form-control{{ $errors->has('apellidos') ? ' is-invalid' : '' }} " name="apellidos" value="{{ old('apellidos') }}" required >
                             </div>
 
@@ -81,7 +41,6 @@
                             </div>
 
                             <div class="col-md-6">
->>>>>>> 8a8c3288b78078fd7abaca3a9b530b8e446940b5
                                 <label for="pais" class="r_titulo">Pais</label>
                                 <select class="form-control" id="pais" name="pais" style="height: auto;">
                                     <option value="AF">Afganistán</option>
@@ -327,61 +286,21 @@
                             </div>
 
                             <div class="col-md-12">
-<<<<<<< HEAD
-                                <label for="institucion" class="r_titulo">Institución</label>
-                                <input id="institucion" type="text" placeholder="Ingrese su Institución " class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="institucion" value="{{ old('institucion') }}" required >
-                                @if ($errors->has('institucion'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('institucion') }}</strong>
-                                    </span>
-                                @endif
-=======
                                 <label for="institucion" class="r_titulo">Institución</label> <strong style="color: red; font-size:18px">*</strong>
                                 <input id="institucion" type="text" placeholder="Ingrese su Institución " class="form-control{{ $errors->has('institucion') ? ' is-invalid' : '' }}" name="institucion" value="{{ old('institucion') }}">
->>>>>>> 8a8c3288b78078fd7abaca3a9b530b8e446940b5
                             </div>
                             
                         </div>
 
-<<<<<<< HEAD
-                        <input hidden type="text" id="idtipo_usuario" id="idtipo_usuario" name="idtipo_usuario" value="3" required>
-                        <input hidden type="text" id="idpersona" id="idpersona" name="idpersona" value="5" required>
-=======
                         <input hidden type="text" id="idtipo_usuario" id="idtipo_usuario" name="idtipo_usuario" value="1" required>
                         <input hidden type="text" id="idpersona" id="idpersona" name="idpersona" value="1" required>
->>>>>>> 8a8c3288b78078fd7abaca3a9b530b8e446940b5
                         
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
                                 <h4 class="r_titulo">Datos de la cuenta</h4>
-<<<<<<< HEAD
                             </div>
                         </div>
-
-                        <label for="email" class="r_titulo">{{ __('E-Mail Address') }}</label>
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-                        @if ($errors->has('email'))
-                            <span class="invalid-feedback">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
-
-                        <label for="password" class="r_titulo">{{ __('Password') }}</label>
-                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-                        @if ($errors->has('password'))
-                            <span class="invalid-feedback">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                                </button>
-=======
->>>>>>> 8a8c3288b78078fd7abaca3a9b530b8e446940b5
-                            </div>
-                        </div>
-                        @endif
-
-                        <label for="password-confirm" class="r_titulo">{{ __('Confirm Password') }}</label>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>    
 
                         <label for="email" class="r_titulo">{{ __('E-Mail Address') }}</label>
                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
@@ -408,6 +327,8 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
