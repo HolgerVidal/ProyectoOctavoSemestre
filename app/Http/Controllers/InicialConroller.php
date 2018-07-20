@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\InformacionEder;
 use App\Configuracion;
-
+use App\Comentario;
 class InicialConroller extends Controller
 {
     public function todo(){
@@ -16,6 +16,7 @@ class InicialConroller extends Controller
     public function index(){
         $opciones = Configuracion::All();
         $contenido=InformacionEder::All();
-        return view('ventanasInicio.ventanaInicial')->with(["contenidoInicial"=>$contenido, 'opciones'=>$opciones]);
+        $comentario=Comentario::All();
+        return view('ventanasInicio.ventanaInicial')->with(["contenidoInicial"=>$contenido, 'opciones'=>$opciones,'comentario'=>$comentario]);
     }
 }

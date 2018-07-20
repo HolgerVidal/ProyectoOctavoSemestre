@@ -12,9 +12,6 @@
 */
 Route::get('/ventanaeder', 'HomeController@eder')->name('eder');
 
-/* Route::get('/', function () {
-    return view('ventanasInicio.ventanaInicial');
-})->name('inicio'); */
 Route::get('/listaContenidos','InicialConroller@todo');
 Route::get('/','InicialConroller@index')->name('inicio');
 

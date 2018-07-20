@@ -15,7 +15,7 @@
             <div class="post-metadata">                                        
                 <span class="posted-on">
                     <i class="fa fa-clock-o"></i>
-                    Junio 24, 2018
+                    <?php echo date("Y-m-d");?>
                 </span>
                 <span class="byline">
                     <i class="fa fa-user"></i>
@@ -23,8 +23,11 @@
                 </span>
                 <span class="comment-link">
                   @if(isset($comentario)) 
-                    <i class="fa fa-comments-o"></i>                                           
-                    <a href="#"> {{$comentario->fecha}} comentarios</a>
+                    <i class="fa fa-comments-o"></i>
+                     @foreach($comentario as $n )                                           
+                     @endforeach 
+                     <a href="#">{{$n->idcomentario}} comentarios</a>
+                      
                   @endif  
                 </span>    
             </div>

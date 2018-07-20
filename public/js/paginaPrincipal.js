@@ -63,3 +63,8 @@ $('#btn-enviar-com').click(function(){
         });    
 
     }
+
+
+   function respuestaComentario(id){
+     alert(id);
+   }
