@@ -66,6 +66,10 @@ class RegisterController extends Controller
     {
         // registramos los datos de la persona
         $persona = new Persona();
+        
+        // una vez registrados los dato de la persoan
+        // procedemos a crear el usuario
+        
         $persona->nombres=$data['nombres'];
         $persona->apellidos=$data['apellidos'];
         $persona->cedula=$data['cedula'];
