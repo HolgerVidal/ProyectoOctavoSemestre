@@ -29,15 +29,15 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="name" class="r_titulo">Cedula</label>
-                                <input id="cedula" type="text" placeholder="Ingrese su cedula" class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }} " name="cedula" value="{{ old('cedula') }}" required >
+                                <label for="name" class="r_titulo">Cedula</label> <strong style="color: red; font-size:18px">*</strong>
+                                <input id="cedula" type="text" placeholder="Ingrese su cedula" class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }} " name="cedula" value="{{ old('cedula') }}">
                             </div>
 
                             <div class="col-md-6">
                                 <label for="sexo" class="r_titulo">Sexo</label>
                                 <select type="text" class="form-control{{ $errors->has('sexo') ? ' is-invalid' : '' }}" name="sexo"  style="height: auto;"  required>
-                                    <option class="r_txt">Masculino</option>
-                                    <option class="r_txt">Femenino</option>
+                                    <option value="M" class="r_txt">Masculino</option>
+                                    <option value="F" class="r_txt">Femenino</option>
                                 </select>
                             </div>
 
@@ -287,8 +287,8 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label for="institucion" class="r_titulo">Institución</label>
-                                <input id="institucion" type="text" placeholder="Ingrese su Institución " class="form-control{{ $errors->has('institucion') ? ' is-invalid' : '' }}" name="institucion" value="{{ old('institucion') }}" required >
+                                <label for="institucion" class="r_titulo">Institución</label> <strong style="color: red; font-size:18px">*</strong>
+                                <input id="institucion" type="text" placeholder="Ingrese su Institución " class="form-control{{ $errors->has('institucion') ? ' is-invalid' : '' }}" name="institucion" value="{{ old('institucion') }}">
                             </div>
                             
                         </div>
@@ -328,6 +328,8 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

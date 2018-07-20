@@ -38,3 +38,9 @@ Route::put('/gestiontitulos', 'InformacionEderController@actualizartitulos'); //
 
 //Ruta para comentarios 
 Route::resource('/addComentario', 'ComentarioController');
+
+// rutas pjara la edicion del perfil del usuario
+Route::get('/perfilUsuario', 'PerfilUsuarioController@index')->name('perfilUsuario');
+Route::get('/datosComboUsuario', 'PerfilUsuarioController@datosUsuarioCombos')->name('datosComboUsuario');
+Route::put('/actualizarDatosUsuario', 'PerfilUsuarioController@actualizar');
+// final de rutas pjara la edicion del perfil del usuario
