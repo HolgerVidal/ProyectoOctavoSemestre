@@ -5,11 +5,7 @@
         <div class="post-content">
             <div class="post-title">
                 @if(isset($opciones))
-                     @foreach ($opciones as $n)
-                        @if($n->nombre =="titulo2")
-                            <h1>{{$n->valor}}</h1>
-                        @endif
-                    @endforeach
+                    <h1>{{$opciones->titulo2}}</h1>
                 @endif
             </div>
             <div class="post-metadata">                                        
@@ -22,6 +18,7 @@
                     <a href="#">Autor</a>
                 </span>
                 <span class="comment-link">
+
                   @if(isset($comentario)) 
                     <i class="fa fa-comments-o"></i>
                      @foreach($comentario as $n )                                           
@@ -29,6 +26,7 @@
                      <a href="#">{{$n->idcomentario}} comentarios</a>
                       
                   @endif  
+                   
                 </span>    
             </div>
             <div class="hr"></div>

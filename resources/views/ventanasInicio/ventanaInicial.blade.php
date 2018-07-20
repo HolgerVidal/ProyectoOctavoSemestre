@@ -7,12 +7,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    @if(isset($opciones))
-                        @foreach ($opciones as $n)
-                            @if($n->nombre =="titulo1")
-                                <h1>{{$n->valor}}</h1>
-                            @endif
-                        @endforeach
+                    @if(isset($opciones))    
+                        <h1>{{$opciones->titulo1}}</h1>
                     @endif
                     <ul class="breadcrumbs">
                         <li><a href="#">Inicio</a></li> 

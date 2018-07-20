@@ -83,7 +83,8 @@ class RegisterController extends Controller
         // procedemos a crear el usuario
         return User::create([
             'idtipo_usuario' => '2',
-            'idpersona' => $data['idpersona'],
+            'idpersona' => $persona->idpersona,
+            'img' => "avatar/0.png",
             'name' => $n1.$n2,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

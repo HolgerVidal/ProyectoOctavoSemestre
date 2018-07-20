@@ -5,6 +5,14 @@ $(document).ready(function(){
             $('#informacion_general').append(item.detalle);
         });
     });
+
+    // para llenar los combos del perfil de la persona
+    $.get('datosComboUsuario',function(data){
+        $('#pf_sexo').val(data.sexo);
+        $('#pf_pais').val(data.pais);
+        $('#pf_fecha_nacimiento').val(data.fecha_nacimiento);
+    });
+    
 });
 
 

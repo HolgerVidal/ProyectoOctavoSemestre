@@ -12,40 +12,30 @@
 							Titulos de la pagina
 							<hr class="adm_hr">
 						</div>
-						<div class="row">													
+						<div class="row">				
+							<div class="col-md-12">
+							<div id="adm_error_contenido_titulos" class="adm_mensaje_error"></div>
+							</div>									
 	                		<div class="col-md-12" id="">
-								<div id="adm_error_contenido_titulos" class="adm_mensaje_error"></div>
 								<div class="adm_area_titulos adm_listado adm_contenedor">
 									<form action="" id="adm_guardar_titulos_form">
 										<div class="row">
 											<div class="col-md-6">
 												@if(isset($opciones))
-												@foreach ($opciones as $n)
-												@if($n->nombre =="titulo1")
 													<label for="adm_titulo1" class="col-md-4 col-form-label">TITULO 1</label>
-													<input value="{{$n->valor}}" id="adm_titulo1" type="text" class="form-control" name="titulo1" required>
-												@endif
-												@endforeach
+													<input value="{{$opciones->titulo1}}" id="adm_titulo1" type="text" class="form-control" name="titulo1" required>
 												@endif
 											</div>
 											<div class="col-md-6">
 												@if(isset($opciones))
-												@foreach ($opciones as $n)
-												@if($n->nombre =="titulo2")
 													<label for="adm_titulo1" class="col-md-4 col-form-label">TITULO 2</label>
-													<input value="{{$n->valor}}" id="adm_titulo2" type="text" class="form-control" name="titulo1" required>
-												@endif
-												@endforeach
+													<input value="{{$opciones->titulo2}}" id="adm_titulo2" type="text" class="form-control" name="titulo1" required>
 												@endif
 											</div>
 											<div class="col-md-12">
 												@if(isset($opciones))
-												@foreach ($opciones as $n)
-												@if($n->nombre =="somos")
 												<label for="adm_somos" class="col-md-4 col-form-label">¿QUIENES SOMOS?</label>
-												<textarea value="" id="adm_somos" class="form-control" name="amd_quienes" id="" cols="30" rows="4" required>{{$n->valor}}</textarea>
-												@endif
-												@endforeach
+												<textarea value="" id="adm_somos" class="form-control" name="amd_quienes" id="" cols="30" rows="4" required>{{$opciones->somos}}</textarea>
 												@endif
 											</div>
 											<div class="col-md-12">

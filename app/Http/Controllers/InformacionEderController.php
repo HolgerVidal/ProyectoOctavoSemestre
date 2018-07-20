@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\InformacionEder;
 use App\Configuracion;
+use App\TipoUsuario;
 /* use Illuminate\Support\Facades\DB; */
 
 class InformacionEderController extends Controller
@@ -20,11 +21,17 @@ class InformacionEderController extends Controller
        $this->middleware('auth');
     }
 
+    public function esadministrador($tipo){
+       // dd($tipo);
+    }
+
     public function index()
     {
         $contenido=InformacionEder::All();
-        $opciones = Configuracion::All();
-        if(Auth::user()->idtipo_usuario ==1){ // para poder usar esto es necesario importar la Auth
+        $opciones = Configuracion::first();
+        $tipo = TipoUsuario::find(Auth::user()->idtipo_usuario);
+        //esadministrador(' ');
+        if($tipo->idtipo_usuario==1){ // para poder usar esto es necesario importar la Auth
             return view('ventanasAdministrador.ventanaInicialAdmin')->with(["opciones"=>$opciones, 'listaContenido'=>$contenido]);
         }else{
             return view('ventanasInicio.ventanaInicial');
@@ -34,19 +41,11 @@ class InformacionEderController extends Controller
     public function actualizartitulos(Request $request){
         // buscamos y modificamos  cada unoa de la opciones de titulo
         // Para titulo1
-        $t1 = Configuracion::where("nombre","=","titulo1")->first();
-        $t1->valor=$request->titulo1;
-        $t1->save();
-
-        // Para titulo2
-        $t2 = Configuracion::where("nombre","=","titulo2")->first();
-        $t2->valor=$request->titulo2;
-        $t2->save();
-
-        // Para ¿Quienes somos?
-        $somos = Configuracion::where("nombre","=","somos")->first();
-        $somos->valor=$request->somos;
-        if($somos->save()){
+        $titulos = Configuracion::first();
+        $titulos->titulo1=$request->titulo1;
+        $titulos->titulo2=$request->titulo2;
+        $titulos->somos=$request->somos;
+        if($titulos->save()){
             return 0;
         }
 

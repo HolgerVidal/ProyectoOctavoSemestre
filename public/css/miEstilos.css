@@ -230,3 +230,12 @@
 	background-color: #e4e4e448;
 }
 /*DE LA IFORMACION DE LA METODOLOGIA EDER AJAJJAS*/
+
+
+/*ESTILOS PARA LA EDICION DE PERFILES*/
+.selec_avatar{
+	border-radius: 5px;
+	padding: 5px 5px 5px 5px;
+	background-color: rgb(211, 204, 204);
+}
+/*FINAL DE ESTILOS PARA LA EDICON DE PERFILES*/

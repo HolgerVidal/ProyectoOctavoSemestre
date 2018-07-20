@@ -76,7 +76,7 @@
                                                 </ul>
                                             @else
                                                 <ul class="clearfix">
-                                                    <li><a href="#">Mi Perfil</a></li>
+                                                    <li><a href="{{ route('perfilUsuario') }}">Mi Perfil</a></li>
                                                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                                                  document.getElementById('logout-form').submit();">Cerrar Sesion</a></li>
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -126,7 +126,7 @@
                                     <p>Login</p>
                                     <a href="#"><i class="fa fa-bars"></i></a>
                                 @else
-                                    <img class="imgPerfil" src="eder/images/avatar/avatarblanco.jpg" alt="">
+                                    <img class="imgPerfil" src="{{Auth::user()->img}}" alt="">
                                     <p>{{ Auth::user()->name }}</p>
                                     <a href="#"><i class="fa fa-bars"></i></a>
                                 @endguest 
@@ -153,7 +153,7 @@
                     </ul>
                 @else
                     <ul class="clearfix">
-                        <li><a href="#">Mi Perfil</a></li>
+                        <li><a href="{{ route('perfilUsuario') }}">Mi Perfil</a></li>
                         <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Cerrar Sesion</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -197,6 +197,7 @@
     <script src="{{ asset('js/paginaPrincipal.js') }}"></script>
     <script src="{{ asset('js/IR_pagina.js') }}"></script>
     <script src="{{ asset('js/administradorContenido.js') }}"></script>
+    <script src="{{ asset('js/perfilUsuario.js') }}"></script>
 
     <!-- IMPORTACIONES DE EDITOR DE TEXTO -->
     <script type="text/javascript" src="editor/js/jquery-1.12.0.js"></script>

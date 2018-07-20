@@ -494,38 +494,40 @@ nav.site-mobile-menu li > ul {
 .search-button a {
   outline: none;
 }
+/*CIDUGI CINEBTADI POR HOLITO*/
+
 /* Modal Search Box
   ----------------------- */
-.search-button .modal {
+/* .search-button .modal {
   overflow: hidden;
-}
-.modal {
+} */
+/* .modal {
   background: rgba(4, 36, 51, 0.9);
   z-index: 500000;
   overflow: hidden;
-}
-.modal-content {
+} */
+/* .modal-content {
   background: transparent;
   -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.5);
           box-shadow: 0 0px 0px rgba(0, 0, 0, 0.5);
   border: 0px solid rgba(0, 0, 0, 0.2);
-}
-.modal-dialog {
+} */
+/* .modal-dialog {
   margin: 0 auto;
   text-align: center;
   position: absolute;
   width: 100%;
-}
-.modal-body {
+} */
+/* .modal-body {
   padding: 0px;
-}
-.modal-body .search-form {
+} */
+/* .modal-body .search-form {
   width: 555px;
   display: inline-block;
   position: relative;
   margin-top: -60px;
-}
-.modal-body .search-form input[type="search"] {
+} */
+/* .modal-body .search-form input[type="search"] {
   border-bottom: 3px solid #27424f;
   border-top: 0px solid #27424f;
   border-right: 0px solid #27424f;
@@ -567,7 +569,9 @@ nav.site-mobile-menu li > ul {
   width: 30px;
   z-index: 100000;
   font-family: arial;
-}
+} */
+
+/*FINAL DE CODIGO COMENTADO POR HOLITO*/
 /* Top Cart
   --------------------------- */
 .cart-button {

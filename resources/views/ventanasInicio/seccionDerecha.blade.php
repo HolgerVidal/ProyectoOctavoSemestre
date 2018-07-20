@@ -4,15 +4,11 @@
         <div class="tiny-border">           </div>                                         
         <div class="textwidget" id="quienes-somos">
             @if(isset($opciones))
-            @foreach ($opciones as $n)
-            @if($n->nombre =="somos")
-            <p style="text-align: justify;"> {{$n->valor}} </p>
-            @endif
-            @endforeach
+            <p style="text-align: justify;"> {{$opciones->somos}} </p>
             @endif                             
         </div>
     </aside>
-<!--     <aside class="widget widget_search">
+<!--<aside class="widget widget_search">
         <form action="#" class="search-form" method="get" role="search">
             <input type="search" name="s" value="" placeholder="Search …" class="search-field">   
             <button class="search-submit" type="submit"><i class="fa fa-search"></i></button>
