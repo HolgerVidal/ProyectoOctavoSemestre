@@ -7,7 +7,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>METODOLOGÍA APLICABLE PARA PROYECTOS DE IMPLEMENTACIÓN TECNOLÓGICA</h1>
+                    @if(isset($opciones))    
+                        <h1>{{$opciones->titulo1}}</h1>
+                    @endif
                     <ul class="breadcrumbs">
                         <li><a href="#">Inicio</a></li> 
                         <b>/</b> 

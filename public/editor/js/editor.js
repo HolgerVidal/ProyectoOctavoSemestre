@@ -661,7 +661,70 @@ You should have received a copy of the GNU General Public License along with thi
 											"tooltip": "Justify", 
 											"commandname":"justifyfull", 
 											"custom":null },
-  
+
+							'insert_link': {
+								"modal": true,
+								"modalId": "InsertLink",
+								"icon": "fa fa-link",
+								"tooltip": "Insert Link",
+								"modalHeader": "Inserte la direcion",
+								"modalBody": $('<div/>', {
+									class: "form-group"
+								}).append($('<div/>', {
+									id: "errMsg"
+								})).append($('<input/>', {
+									type: "text",
+									id: "inputText",
+									class: "form-control form-control-link ",
+									placeholder: "Text to Display",
+								})).append($('<input/>', {
+									type: "text",
+									id: "inputUrl",
+									required: true,
+									class: "form-control form-control-link",
+									placeholder: "Enter URL"
+								})),
+								"beforeLoad": function () {
+									editorObj = this;
+									$('#inputText').val("");
+									$('#inputUrl').val("");
+									$(".alert").alert("close");
+									if ($(editorObj).data('currentRange') != '') {
+										$('#inputText').val($(editorObj).data('currentRange'));
+									}
+								},
+								"onSave": function () {
+									var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
+									var targetText = $('#inputText').val();
+									var targetURL = $('#inputUrl').val();
+									var range = $(editorObj).data('currentRange');
+									if (targetURL == '') {
+										methods.showMessage.apply(editorObj, ["errMsg", "Please enter url"]);
+										return false;
+									}
+									if (!targetURL.match(urlPattern)) {
+										methods.showMessage.apply(editorObj, ["errMsg", "Enter valid url"]);
+										return false;
+									}
+									if (range == '' && targetText == '') {
+										targetText = targetURL;
+									}
+									if (navigator.userAgent.match(/MSIE/i)) {
+										var targetLink = '<a href="' + targetURL + '" target="_blank">' + targetText + '</a>';
+										methods.restoreSelection.apply(editorObj, [targetLink, 'html']);
+									}
+									else {
+										methods.restoreSelection.apply(editorObj, [targetText]);
+										document.execCommand('createLink', false, targetURL);
+									}
+									$(editorObj).data("editor").find('a[href="' + targetURL + '"]').each(function () { $(this).attr("target", "_blank"); });
+									$(".alert").alert("close");
+									$("#InsertLink").modal("hide");
+									$(editorObj).data("editor").focus();
+									return false;
+								}
+							},
+							
 						   'hr_line'	: { "text": "HR", 
 											"icon":"fa fa-minus", 
 											"tooltip": "Horizontal Rule", 
@@ -790,7 +853,7 @@ You should have received a copy of the GNU General Public License along with thi
 							  'textformats': ['indent', 'outdent', 'block_quote', 'ol', 'ul'],
 							  'fonteffects' : ['fonts', 'styles', 'font_size'],
 							  'actions' : ['undo', 'redo'],
-							  'insertoptions' : ['', '', '', ''],
+							  'insertoptions' : ['insert_link', '', '', ''],
 							  'extraeffects' : ['strikeout', 'hr_line', 'splchars'],
 							  'advancedoptions' : ['print', 'rm_format', 'select_all', 'source'],
 							  'screeneffects' : ['togglescreen']
@@ -1157,7 +1220,7 @@ You should have received a copy of the GNU General Public License along with thi
 			//Create a Modal for the button.		
 			var modalTrigger = $('<a/>',{	href:"#"+modalId,
 											role:"button",
-											class:"btn btn-default",
+											class:"btn botonH",
 											"data-toggle":"modal"
 			});
 			var modalElement = $('<div/>',{ id: modalId,
@@ -1166,9 +1229,9 @@ You should have received a copy of the GNU General Public License along with thi
 								              role: "dialog",
 								              "aria-labelledby":"h3_"+modalId,
 								              "aria-hidden":"true"
-								          }).append($('<div>',{
+												}).append('<br><br><br><br>').append($('<div>',{
 								            	class:"modal-dialog"
-								         		}).append($('<div>',{
+										  }).append($('<div>',{
 							            			class:"modal-content"
 									         		}).append($('<div>',{
 									           			class:"modal-header"
@@ -1188,7 +1251,7 @@ You should have received a copy of the GNU General Public License along with thi
 									            		class:"modal-footer"
 									         			}).append($('<button/>',{
 									                		type:"button",
-									                		class:"btn btn-default",
+																class:"btn botonH",
 									                		"data-dismiss":"modal",
 									                		"aria-hidden":"true"
 									               			}).html('Cancel')

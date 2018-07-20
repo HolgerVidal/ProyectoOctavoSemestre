@@ -4,7 +4,9 @@
     <article>
         <div class="post-content">
             <div class="post-title">
-                <h1>METODOLOGÍA EDER</h1>
+                @if(isset($opciones))
+                    <h1>{{$opciones->titulo2}}</h1>
+                @endif
             </div>
             <div class="post-metadata">                                        
                 <span class="posted-on">
@@ -15,14 +17,16 @@
                     <i class="fa fa-user"></i>
                     <a href="#">Autor</a>
                 </span>
-                <span class="comment-link"> 
+                <span class="comment-link">
                     <i class="fa fa-comments-o"></i>                                           
-                    <a href="#">x comentarios</a>
+                    <a href="#">x Comentarios
                 </span>    
             </div>
             <div class="hr"></div>
             <div class="post-entry">
-                <p>
+            <div id="informacion_general"></div>
+
+                <!-- <p>
                     La metodología EDER es un diseño para soluciones de infraestructura aplicable a 
                     proyectos de implementación tecnológica, se la ha identificado con el acrónimo 
                     EDER por las siglas de las fases que la conforman: Estudio, Diseño, Ejecución y Revisión.
@@ -101,7 +105,7 @@
                         autores, propende al aseguramiento del éxito de todo proyecto de investigación 
                         tecnológica.
                     </p>      
-                </div>
+                </div> -->
 
             </div>
             <div class="footer-entry clearfix">

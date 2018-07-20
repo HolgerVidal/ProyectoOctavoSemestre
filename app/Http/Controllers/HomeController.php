@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comentario;
+
 
 class HomeController extends Controller
 {
@@ -23,10 +25,12 @@ class HomeController extends Controller
      */
 
     public function eder(){
-        return view('eder');
+       $come=Comentario::All();
+        return view('eder')->with(['comentario'=>$come]);
     }
-    public function index()
+    public function index() 
     {
-        return view('home');
+        $come=Comentario::All();
+        return view('ventanasInicio.informacion')->with(['comentario'=>$come]);
     }
 }

@@ -13,6 +13,8 @@
     <div class="form-group">
     	<label for="commentario"> Añadir Comentario</label>
     	<textarea class="form-control" id="add-comentario" rows="5" placeholder="Escriba aquí su comentario..."></textarea>
+        <input type="" id="id" value="{{ Auth::user()->id }}" hidden>
+        <input type="" id="user" value="{{ Auth::user()->name }}" hidden>
     	<button type="button" class="btn-comentar btn btn-success" id="btn-enviar-com">Enviar</button>
     </div>
 @endguest
@@ -36,7 +38,7 @@
                 </footer><!-- .comment-meta -->
 
                 <div class="comment-content">
-                    <p>Esto es un simple comentario el primero de la lista xd xd xd xd xd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xdxd xd xd xd</p>
+                    <p>Esto es un simple comentario el primero de la lista xd xd xd xd xd xd xd xdxd xd xd </p>
                 </div><!-- .comment-content -->
 
                 <div class="reply">

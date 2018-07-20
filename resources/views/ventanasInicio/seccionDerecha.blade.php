@@ -3,12 +3,12 @@
         <h3 class="widget-title">¿Quienes Somos?</h3>
         <div class="tiny-border">           </div>                                         
         <div class="textwidget" id="quienes-somos">
-            <p>Informacion con respecto a los desarrolladores de esta pagina, y el objejtivo
-                de difundir esta metodologia.
-            </p>                              
+            @if(isset($opciones))
+            <p style="text-align: justify;"> {{$opciones->somos}} </p>
+            @endif                             
         </div>
     </aside>
-<!--     <aside class="widget widget_search">
+<!--<aside class="widget widget_search">
         <form action="#" class="search-form" method="get" role="search">
             <input type="search" name="s" value="" placeholder="Search …" class="search-field">   
             <button class="search-submit" type="submit"><i class="fa fa-search"></i></button>
