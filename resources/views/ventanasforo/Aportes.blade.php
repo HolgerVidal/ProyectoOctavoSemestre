@@ -5,7 +5,7 @@
 @else
     <div class="form-group">
         
-    	<label for="commentario"> Añadir Comentario</label>
+    	<label for="commentario"> Añadir Respuesta</label>
     	<textarea class="form-control" id="add-comentario" rows="5" placeholder="Escriba aquí su respuesta..."></textarea>
     	<button type="button" class="btn-comentar btn btn-success" id="btn-enviar-com">Publicar</button>
     </div>
