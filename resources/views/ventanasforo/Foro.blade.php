@@ -7,9 +7,9 @@
                 
                 <div class="card-header"  > <strong> <center>
                         
-                        @foreach($foros as $foro)
+                        
                         TEMA: {{$foro->tema}} 
-                        @endforeach
+                      
                     </center></strong>  </div>
                 </div>
                  

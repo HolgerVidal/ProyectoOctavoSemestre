@@ -56,17 +56,27 @@
                             <spam class = "fa fa-trash"></spam>-->
                             <center><div class="row">
                                 
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                   
-                                  <form action="{{url('/foros/mostrarforo')}}" method="post">
-                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <form action="{{url('/foros/mostrarforo')}}" method="post">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                      <input type="hidden" name="idforo" value="{{$foro->idforo}}">
-                                    <button type="submit">Ingresar</button>
-                                  </form>
+                                        <input type="hidden" name="idforo" value="{{$foro->idforo}}">
+                                        <button type="submit">Ingresar</button>
+                                    </form>
                                 
                                 </div>
-                                
+
+                                <div class="col-md-6">
+                                  
+                                    <form  method="post">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                        <input type="hidden" name="idforo" value="{{$foro->idforo}}">
+                                        <button type="submit">Elimanar</button>
+                                    </form>
+                                    
+                                </div>
                           </div></center>
                           </td>
                           

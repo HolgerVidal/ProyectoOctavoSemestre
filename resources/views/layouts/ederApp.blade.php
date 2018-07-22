@@ -88,11 +88,15 @@
                                         <li><a href="#">Foro</a>
                                             <ul>
                                                 @guest
+                                                    <li><a href="{{ route('listaforos') }}">Lista de Foros</a></li>
                                                 @else
-                                                <li><a href="#">Nuevo Foro</a></li>
-                                                <li><a href="#">Mis Foros</a></li>
+                                                    <li><a href="#">Nuevo Foro</a></li>
+                                                    <li><a href="{{ route('misforos') }}">Mis Foros</a></li>
+                                                    @if( Auth::user()->idtipo_usuario =='1')
+                                                    <li><a href="{{ route('listaforosAdmin') }}">Lista de Foros</a></li>
+                                                    @endif
                                                 @endguest
-                                                <li><a href="{{ route('listaforos') }}">Lista de Foros</a></li>
+                                                
                                             </ul>
                                         </li>
                                         <li><a href="#">Documentación</a></li>

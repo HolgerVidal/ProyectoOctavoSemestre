@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Foros;
 use App\Respuestas;
 use App\User;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 
 class ForosController extends Controller
@@ -26,17 +30,7 @@ class ForosController extends Controller
      */
     public function create(Request $request)
     {
-        //creacion de foros
-        $foro= new Foros();
-        $foro->idforo = $request->idforo;//
-        $foro->users_id = $request->users_id;
-        $foro->tema = $request->tema;
-        $foro->fecha = $request->fecha;
-        $tipoP->estado_del = 1;
-
-        $tipoP->save();
-
-        return redirect('ListaForos');;//redirect('/persona/persona/nuevo'); 
+        
  
     }
 
@@ -48,6 +42,17 @@ class ForosController extends Controller
      */
     public function store(Request $request)
     {
+        //TODO:creacion de foros
+        $foro= new Foros();
+        $foro->idforo = $request->idforo;//
+        $foro->users_id = User::find(Auth::user()->id);
+        $foro->tema = $request->tema;
+        $foro->fecha = Carbon::now()->toDateTimeString();
+        $foro->estado_del = '1';
+        
+        $foro->save();
+
+        return redirect('ListaForos');
         //
     }
 
@@ -101,27 +106,39 @@ class ForosController extends Controller
 
     //MOSTRAR LOS FOROS EXISTENTES
     public function showForos(){
+       
         $foros=Foros::where('estado_del','1')->paginate(5);
         //$foros=Foros::all();
         return view('ventanasforo.ListaForos',compact('foros'));
         //return(view('prueva',compact('pruevas')));
     } 
+    public function showForosAdmin(){
+
+        $usuario_actual= User::find(Auth::user()->id);        
+        $foros=Foros::where('estado_del','1')->paginate(5);
+        //$foros=Foros::all();
+        return view('ventanasforo.ListaForosAdmin',compact('foros','usuario_actual'));
+        //return(view('prueva',compact('pruevas')));
+    } 
     public function mostrarforo(Request $request)
     {
-        $users=User::all();
-        $foros=Foros::where('idforo',$request->idforo)->where('estado_del','1')->paginate(5);
         
-        $idforo;
-        foreach ($foros as $item) {
-            # code...
-            $idforo = $item->idforo;
-        }
-        //$idforo=$foros->idforo;
+        $users=User::all(); 
+        $foro=Foros::where('idforo',$request->idforo)->where('estado_del','1')
+                                                      ->firstOrFail();
+        $respuestas=Respuestas::where('idforo',$foro->idforo)->where('estado_del','1')->paginate(5);
 
-        $respuestas=Respuestas::where('idforo',$idforo)->where('estado_del','1')->paginate(5);
-
-        return view('ventanasforo.Foro',compact('foros','respuestas','users')); 
+        return view('ventanasforo.Foro',compact('foro','respuestas','users')); 
         
+    }
+    public function mostrarMisForos(){
+        $usuario_actual= User::find(Auth::user()->id);
+        //where('users_id',User::find(Auth::user()->id))
+        $foros=Foros::where('users_id',$usuario_actual->id)
+                        ->where('estado_del','1')
+                        ->paginate(5);
+
+        return view('ventanasforo.MisForos',compact('foros','usuario_actual'));
     }
 
 }
