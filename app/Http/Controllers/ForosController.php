@@ -99,7 +99,7 @@ class ForosController extends Controller
     public function destroy(Request $request)
     {
         //
-        $foro=Foros::find($request->id);
+        $foro=Foros::find($request->idforo);
         $foro->update(['estado_del'=>0]);
         return redirect('/foros/Listado');
     }
@@ -108,18 +108,14 @@ class ForosController extends Controller
     public function showForos(){
        
         $foros=Foros::where('estado_del','1')->paginate(5);
-        //$foros=Foros::all();
         return view('ventanasforo.ListaForos',compact('foros'));
-        //return(view('prueva',compact('pruevas')));
     } 
     public function showForosAdmin(){
 
         $usuario_actual= User::find(Auth::user()->id);        
         $foros=Foros::where('estado_del','1')->paginate(5);
-        //$foros=Foros::all();
         return view('ventanasforo.ListaForosAdmin',compact('foros','usuario_actual'));
-        //return(view('prueva',compact('pruevas')));
-    } 
+    }
     public function mostrarforo(Request $request)
     {
         
@@ -139,6 +135,23 @@ class ForosController extends Controller
                         ->paginate(5);
 
         return view('ventanasforo.MisForos',compact('foros','usuario_actual'));
+    }
+
+    public function destroyForo(Request $request)
+    {
+        //
+       
+        $foro=Foros::find($request->idforo);
+        $foro->update(['estado_del'=>0]);
+        
+        $usuario_actual= User::find(Auth::user()->id);
+        //where('users_id',User::find(Auth::user()->id))
+        $foros=Foros::where('estado_del','1')
+                     ->paginate(5);
+
+
+        return view('ventanasforo.ListaForosAdmin',compact('foros','usuario_actual'));
+
     }
 
 }

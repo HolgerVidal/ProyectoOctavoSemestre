@@ -97,7 +97,7 @@
 
                               <div class="col-md-6">
                                 
-                                  <form  method="post">
+                                  <form action="{{url('/foros/misforos/delete')}}" method="post">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                       <input type="hidden" name="idforo" value="{{$foro->idforo}}">

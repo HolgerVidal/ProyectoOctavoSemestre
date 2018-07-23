@@ -35,6 +35,9 @@ Route::get('/foros/lista','ForosController@showForos')->name('listaforos');
 Route::get('/foros/listaAdmin','ForosController@showForosAdmin')->name('listaforosAdmin');
 Route::post('/foros/mostrarforo','ForosController@mostrarforo')->name('mostrarforo');
 Route::get('/foros/misforos','ForosController@mostrarMisForos')->name('misforos');
+Route::post('/foros/misforos/delete','ForosController@destroyForo')->name('eliminarMiForo');
+Route::post('/foros/delete','ForosController@destroyForo')->name('eliminarForo');
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,4 +57,5 @@ Route::resource('/addComentario', 'ComentarioController');
 Route::get('/perfilUsuario', 'PerfilUsuarioController@index')->name('perfilUsuario');
 Route::get('/datosComboUsuario', 'PerfilUsuarioController@datosUsuarioCombos')->name('datosComboUsuario');
 Route::put('/actualizarDatosUsuario', 'PerfilUsuarioController@actualizar');
+
 // final de rutas pjara la edicion del perfil del usuario

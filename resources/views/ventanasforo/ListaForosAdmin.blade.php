@@ -71,16 +71,16 @@
 
                                 @else
                                      @if($usuario_actual->idtipo_usuario=='1')
-                                        <div class="col-md-6">
-                                  
-                                            <form >
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                     <div class="col-md-6">
+                                
+                                          <form action="{{url('/foros/misforos/delete')}}" method="post">
+                                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                                <input type="hidden" name="idforo" value="{{$foro->idforo}}">
-                                              <button type="submit">Eliminar</button>
-                                            </form>
-                                    
-                                        </div>
+                                              <input type="hidden" name="idforo" value="{{$foro->idforo}}">
+                                              <button type="submit">Elimnar</button>
+                                          </form>
+                                          
+                                      </div>
                                      @endif        
                                 @endguest
 
