@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Respuestas;
+use App\Foros;
+use App\User;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RespuestasController extends Controller
@@ -14,7 +18,11 @@ class RespuestasController extends Controller
      */
     public function index()
     {
-        //
+
+        $users=User::all();
+        $foros= Foros::with('respuestas')->get();
+        $respuestas=Respuestas::with('foros')->get();
+        return view('ventanasforo.Aportes')->with(['foros'=>$foros, 'respuestas'=>$respuestas,'users'=>$users]);
     }
 
     /**
@@ -26,8 +34,8 @@ class RespuestasController extends Controller
     {
         //
     }
-
-    /**
+    
+     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -36,6 +44,20 @@ class RespuestasController extends Controller
     public function store(Request $request)
     {
         //
+        $respuestas=new Respuestas();
+
+        $usuario_actual= User::find(Auth::user()->id);
+        $respuestas->users_id=$usuario_actual->id;        
+        $respuestas->idforo = $request->idforo;       
+        $respuestas->detalle=$request->detalle;
+        $respuestas->fecha=Carbon::now()->toDateTimeString();
+        $respuestas->estado_del='1';
+        if ($respuestas->save()) {
+            return response()->json($respuestas);
+        } else {
+            return 0;
+        }
+
     }
 
     /**
@@ -47,6 +69,7 @@ class RespuestasController extends Controller
     public function show($id)
     {
         //
+        
     }
 
     /**
@@ -84,9 +107,23 @@ class RespuestasController extends Controller
     }
  
     public function mostrar(){
-        //$respuestasR -- GUARDA datos de todas las respuestas echas al foro
-        //users_idRes -- es el id del commentario padre
-        $respuestasR=Respuestas::all();
-        return view('ventanasforo.Aportes',compact('respuestasR')); 
+        $users=User::all();
+        $respuestas=Respuestas::with('foros')->get();
+        return view('ventanasforo.Foro')->with(['respuestas'=>$respuestas]);
+        
+        //return view('ventanasforo.Aportes');
     }    
+
+    public function eliminar(Request $request){
+        $respuesta=Respuestas::find($request->idrespuesta);
+        //$respuesta->update(['estado_del'=>0]);
+        
+        if ( $respuesta->update(['estado_del'=>0])) {
+            return 1;
+        } else {
+            return 0;
+        }
+        
+    }
+
 }

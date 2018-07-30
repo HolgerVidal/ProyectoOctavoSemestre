@@ -1,6 +1,6 @@
 var ruta='/PROYECTO_8vo-master/public/';
 $('#btn-enviar-com').click(function(){
-
+    alert("puto el que lee esto");
 	var comentarios = $('#comments-actuales').html();
 	guardarComentarios();
 	var nuevos_comentarios = 
@@ -32,7 +32,7 @@ $('#btn-enviar-com').click(function(){
         comentarios
 	;
 
-	$('#comments-actuales').html(nuevos_comentarios);
+	$('#comments-actuales').append(nuevos_comentarios);//append
 });
 
  //Guardar comentarios

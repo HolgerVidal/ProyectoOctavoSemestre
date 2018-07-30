@@ -90,7 +90,6 @@
                                                 @guest
                                                     <li><a href="{{ route('listaforos') }}">Lista de Foros</a></li>
                                                 @else
-                                                    <li><a href="#">Nuevo Foro</a></li>
                                                     <li><a href="{{ route('misforos') }}">Mis Foros</a></li>
                                                     @if( Auth::user()->idtipo_usuario =='1')
                                                     <li><a href="{{ route('listaforosAdmin') }}">Lista de Foros</a></li>
@@ -202,6 +201,9 @@
     <script src="{{ asset('js/IR_pagina.js') }}"></script>
     <script src="{{ asset('js/administradorContenido.js') }}"></script>
     <script src="{{ asset('js/perfilUsuario.js') }}"></script>
+
+    <!--hola que haces -->
+    <script src="{{ asset('js/Respuestas2.js') }}"></script>
 
     <!-- IMPORTACIONES DE EDITOR DE TEXTO -->
     <script type="text/javascript" src="editor/js/jquery-1.12.0.js"></script>

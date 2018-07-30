@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Foros;
 use App\Respuestas;
 use App\User;
+use App\Configuracion;
+use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +46,7 @@ class ForosController extends Controller
     {
         //TODO:creacion de foros
         $foro= new Foros();
-        $foro->idforo = $request->idforo;//
+        //$foro->idforo = $request->idforo;//
         $foro->users_id = User::find(Auth::user()->id);
         $foro->tema = $request->tema;
         $foro->fecha = Carbon::now()->toDateTimeString();
@@ -52,7 +54,7 @@ class ForosController extends Controller
         
         $foro->save();
 
-        return redirect('ListaForos');
+        return redirect('crearforo');
         //
     }
 
@@ -101,7 +103,7 @@ class ForosController extends Controller
         //
         $foro=Foros::find($request->idforo);
         $foro->update(['estado_del'=>0]);
-        return redirect('/foros/Listado');
+        return redirect('/foroslista');
     }
 
     //MOSTRAR LOS FOROS EXISTENTES
@@ -118,13 +120,16 @@ class ForosController extends Controller
     }
     public function mostrarforo(Request $request)
     {
-        
+        $opciones = Configuracion::first();
         $users=User::all(); 
         $foro=Foros::where('idforo',$request->idforo)->where('estado_del','1')
                                                       ->firstOrFail();
-        $respuestas=Respuestas::where('idforo',$foro->idforo)->where('estado_del','1')->paginate(5);
+        $respuestas=Respuestas::where('idforo',$foro->idforo)->where('estado_del','1')->paginate(100);
 
-        return view('ventanasforo.Foro',compact('foro','respuestas','users')); 
+        //return view('ventanasforo.GestionForo',compact('foro','respuestas','users')); 
+        $respuestas=Respuestas::where('idforo',$foro->idforo)->paginate(5);
+        
+        return view('ventanasforo.GestionForo',compact('foro','respuestas','users','opciones'));
         
     }
     public function mostrarMisForos(){
@@ -147,11 +152,50 @@ class ForosController extends Controller
         $usuario_actual= User::find(Auth::user()->id);
         //where('users_id',User::find(Auth::user()->id))
         $foros=Foros::where('estado_del','1')
-                     ->paginate(5);
+                     ->paginate(10);
 
 
         return view('ventanasforo.ListaForosAdmin',compact('foros','usuario_actual'));
 
     }
+    public function destroyMisforos(Request $request)
+    {
+        //
+       
+        $foro=Foros::find($request->idforo);
+        $foro->update(['estado_del'=>0]);
+        
+        $usuario_actual= User::find(Auth::user()->id);
+        //where('users_id',User::find(Auth::user()->id))
+        $foros=Foros::where('estado_del','1')
+                     ->paginate(10);
 
+
+        return view('ventanasforo.MisForos',compact('foros','usuario_actual'));
+
+    }
+
+    public function crear(Request $request)
+    {
+        //TODO:creacion de foros
+        $foro= new Foros();
+        //$foro->idforo = $request->idforo;//
+        
+        $usuario_actual= User::find(Auth::user()->id);
+        $foro->users_id = $usuario_actual->id;
+        $foro->tema = $request->tema;
+        $foro->fecha = Carbon::now()->toDateTimeString();
+        $foro->estado_del = '1';
+        
+        $foro->save();
+
+       
+        //where('users_id',User::find(Auth::user()->id))
+        $foros=Foros::where('users_id',$usuario_actual->id)
+                        ->where('estado_del','1')
+                        ->paginate(10);
+
+        return view('ventanasforo.MisForos',compact('foros','usuario_actual'));
+        //
+    }
 }

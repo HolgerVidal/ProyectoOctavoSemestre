@@ -10,4 +10,5 @@ class Comentario extends Model
    protected $table='comentario';
    protected $primaryKey='idcomentario'; 
    public $timestamps= false;  
+
 }

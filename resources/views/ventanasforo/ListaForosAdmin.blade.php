@@ -58,7 +58,7 @@
                                 
                                 <div class="col-md-6">
                                   
-                                  <form action="{{url('/foros/mostrarforo')}}" method="post">
+                                  <form action="{{url('/forosmostrarforo')}}" method="post">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                       <input type="hidden" name="idforo" value="{{$foro->idforo}}">
@@ -73,7 +73,7 @@
                                      @if($usuario_actual->idtipo_usuario=='1')
                                      <div class="col-md-6">
                                 
-                                          <form action="{{url('/foros/misforos/delete')}}" method="post">
+                                          <form action="{{url('/forosdelete')}}" method="post">
                                               <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                               <input type="hidden" name="idforo" value="{{$foro->idforo}}">

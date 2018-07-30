@@ -31,12 +31,22 @@ Route::put('/gestiontitulos', 'InformacionEderController@actualizartitulos'); //
 
 //TODO:holaestas son mis rutas --maron vera---///////////////////////////////////////
 
-Route::get('/foros/lista','ForosController@showForos')->name('listaforos');
-Route::get('/foros/listaAdmin','ForosController@showForosAdmin')->name('listaforosAdmin');
-Route::post('/foros/mostrarforo','ForosController@mostrarforo')->name('mostrarforo');
-Route::get('/foros/misforos','ForosController@mostrarMisForos')->name('misforos');
-Route::post('/foros/misforos/delete','ForosController@destroyForo')->name('eliminarMiForo');
-Route::post('/foros/delete','ForosController@destroyForo')->name('eliminarForo');
+Route::get('/foroslista','ForosController@showForos')->name('listaforos');
+Route::get('/foroslistaAdmin','ForosController@showForosAdmin')->name('listaforosAdmin');
+
+Route::post('/forosmostrarforo','ForosController@mostrarforo')->name('mostrarforo');
+Route::post('/forosmostrarfororespuestas','RespuestasController@mostrar')->name('mostrarrespuestas');
+
+Route::get('/forosmisforos','ForosController@mostrarMisForos')->name('misforos');
+Route::post('/forosmisforoscrear','ForosController@crear')->name('crearforo');
+Route::post('/forosmisforosdelete','ForosController@destroyMisforos')->name('eliminarMiForo');
+Route::post('/forosdelete','ForosController@destroyForo')->name('eliminarforo');
+//Route::post('/foros/delete','ForosController@destroyForo')->name('eliminarForo');
+
+Route::resource('/forosrespuestas','RespuestasController');
+Route::post('/forosrespuestas/elininar','RespuestasController@eliminar');
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////

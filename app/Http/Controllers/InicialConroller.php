@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\InformacionEder;
 use App\Configuracion;
 use App\Comentario;
+use App\Foros;
 
 class InicialConroller extends Controller
 {
@@ -18,6 +19,7 @@ class InicialConroller extends Controller
         $opciones = Configuracion::first();
         $contenido=InformacionEder::All();
         $come=Comentario::All();
-        return view('ventanasInicio.ventanaInicial')->with(["contenidoInicial"=>$contenido, 'opciones'=>$opciones,'comentario'=>$come]);
+        $_foros=Foros::all(); /////
+        return view('ventanasInicio.ventanaInicial')->with(["contenidoInicial"=>$contenido, 'opciones'=>$opciones,'comentario'=>$come,'_foros'=>$_foros]);
     }
 }

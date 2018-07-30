@@ -58,7 +58,7 @@
                                 
                                 <div class="col-md-12">
                                   
-                                  <form action="{{url('/foros/mostrarforo')}}" method="post">
+                                  <form action="{{url('/forosmostrarforo')}}" method="post">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                       <input type="hidden" name="idforo" value="{{$foro->idforo}}">

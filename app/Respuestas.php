@@ -12,7 +12,11 @@ class Respuestas extends Model
     public $timestamps=false;
     
     protected $fillable = [
-        'idrespuesta','users_id','idforo', 'detalle','fecha','users_idRes','esRes','estado_del'
+        'idrespuesta','users_id','idforo', 'detalle','fecha','estado_del'
     ]; 
+    public function foros(){
+        //                        modelo      fk        pk
+        return $this->belongsTo('App\Foros','idforo','idforo');
+    }
 }
  

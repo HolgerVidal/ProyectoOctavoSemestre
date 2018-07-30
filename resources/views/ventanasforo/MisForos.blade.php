@@ -6,11 +6,12 @@
             
                   <br>
                   <!--////////////////////////// Agregar un nuevo foro ////////////////////////////////////////////////  -->
-                  <form class="row">
+                  <form class="row" action="{{url('/forosmisforoscrear')}}" method="post">
                       
                       <div class="form-group col-md-8">
+                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <label for="InputUsuario">Nombre del Foro</label>
-                          <input type="text" class="form-control" id="detalle" placeholder="Escriba el nombre del Foro Aquí" />
+                          <input type="text" class="form-control" name="tema" placeholder="Escriba el nombre del Foro Aquí" />
                       </div>
                       <div class=col-md-4>
                           <br>
@@ -18,6 +19,8 @@
                       </div>
                       
                   </form>
+
+
                     <!-- ////////////////////////////////////////////////////////////////////////////////////////////////  -->
                   <br>
 
@@ -86,7 +89,7 @@
  
                               <div class="col-md-6">
                                 
-                                  <form action="{{url('/foros/mostrarforo')}}" method="post">
+                                  <form action="{{url('/forosmostrarforo')}}" method="post">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                       <input type="hidden" name="idforo" value="{{$foro->idforo}}">
@@ -97,7 +100,7 @@
 
                               <div class="col-md-6">
                                 
-                                  <form action="{{url('/foros/misforos/delete')}}" method="post">
+                                  <form action="{{url('/forosmisforosdelete')}}" method="post">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                       <input type="hidden" name="idforo" value="{{$foro->idforo}}">
