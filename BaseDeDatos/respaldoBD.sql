@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `eder_db` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `eder_db`;
--- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.20, for Linux (x86_64)
 --
 -- Host: localhost    Database: eder_db
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.26-MariaDB
+-- Server version	5.5.5-10.2.16-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -94,7 +92,7 @@ CREATE TABLE `configuracion` (
 
 LOCK TABLES `configuracion` WRITE;
 /*!40000 ALTER TABLE `configuracion` DISABLE KEYS */;
-INSERT INTO `configuracion` VALUES (4,'METODOLOGÍA APLICABLE PARA PROYECTOS DE IMPLEMENTACIÓN TECNOLÓGICA','METODOLOGÍA EDER','En esta parte se llena una pequeña información de quien es el encargado de la pagina, algo asi como un objetivo para que el cliente sepa maso. esto es editable');
+INSERT INTO `configuracion` VALUES (4,'METODOLOGÍA APLICABLE PARA PROYECTOS DE IMPLEMENTACIÓN TECNOLÓGICA','METODOLOGÍA EDER','En esta parte se llena una pequeña información de quien es el encargado de la pagina, algo asi como un objetivo para que el cliente sepa maso. esto es editable cccccccccccccccccskjdhasjkhdkajshdkashdk');
 /*!40000 ALTER TABLE `configuracion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +140,7 @@ CREATE TABLE `foro` (
   PRIMARY KEY (`idforo`,`users_id`),
   KEY `fk_foro_users1_idx` (`users_id`),
   CONSTRAINT `fk_foro_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +149,7 @@ CREATE TABLE `foro` (
 
 LOCK TABLES `foro` WRITE;
 /*!40000 ALTER TABLE `foro` DISABLE KEYS */;
-INSERT INTO `foro` VALUES (1,10,'sdjfklsdjfl','2010-12-12',NULL);
+INSERT INTO `foro` VALUES (1,10,'sdjfklsdjfl','2010-12-12','0'),(2,21,'El Hacking Etico','2010-12-12','1'),(3,21,'Software Libre','2010-12-12','1'),(14,21,'hola','2018-07-30','0'),(15,21,'hola','2018-07-30','0');
 /*!40000 ALTER TABLE `foro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +248,7 @@ CREATE TABLE `persona` (
   `pais` varchar(100) DEFAULT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
   PRIMARY KEY (`idpersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +257,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'Holger','Vidal',NULL,'M','ESTA ES LA INSTITUCIÓN','AQ','2018-07-04'),(2,'bbb','bbb','bbb','M','bb','bb','2014-02-02'),(3,'nnnn','nnn','nnn','M','nnn','nnnn','2011-12-12'),(4,'holger','vidal','333333','M','esto es la institucion','ES','2018-12-31'),(5,'HOLGER','VIDAL','123','M','ESPAM MFL','US','2018-07-18'),(6,'Adrian','Vidal','12121212','M','ESPAM MFL','ES','2018-07-24'),(7,'holgervidalnosequemaspornerleaesto','lodemasescincidencia','121212','M','sdfsadfasdf','ES','2018-07-19'),(8,'Holger Adrian','Vidal Falcones','1315139484','M','espam','ES','2017-12-31'),(9,'sdfasdf','adsfasdf','asdfadf','M','asdfasdf','ES','2018-07-12'),(10,'Holger Andres','Vidal Loor','1315136789','F','xzczxc','DZ','2018-07-19'),(11,'asdASDAS','DFADF','retert','M','ertert','ES','2018-07-11'),(13,'asdasdas','asdasd',NULL,'M','asdasd','ES','2018-07-13'),(14,'ggggggg','gggggggg','ggg','F','sdfsdf','ES','2018-07-19'),(15,'Holger Adrian','Vidal Falcones',NULL,'M','ESPAM','ES','2018-07-03'),(16,'safsdf','adfadf',NULL,'M',NULL,'ES',NULL),(17,'safsdf','adfadf',NULL,'M',NULL,'ES',NULL);
+INSERT INTO `persona` VALUES (1,'Holger','Vidal',NULL,'M','ESTA ES LA INSTITUCIÓN','AQ','2018-07-04'),(2,'bbb','bbb','bbb','M','bb','bb','2014-02-02'),(3,'nnnn','nnn','nnn','M','nnn','nnnn','2011-12-12'),(4,'holger','vidal','333333','M','esto es la institucion','ES','2018-12-31'),(5,'HOLGER','VIDAL','123','M','ESPAM MFL','US','2018-07-18'),(6,'Adrian','Vidal','12121212','M','ESPAM MFL','ES','2018-07-24'),(7,'holgervidalnosequemaspornerleaesto','lodemasescincidencia','121212','M','sdfsadfasdf','ES','2018-07-19'),(8,'Holger Adrian','Vidal Falcones','1315139484','M','espam','ES','2017-12-31'),(9,'sdfasdf','adsfasdf','asdfadf','M','asdfasdf','ES','2018-07-12'),(10,'Holger Andres','Vidal Loor','1315136789','F','xzczxc','DZ','2018-07-19'),(11,'asdASDAS','DFADF','retert','M','ertert','ES','2018-07-11'),(13,'asdasdas','asdasd',NULL,'M','asdasd','ES','2018-07-13'),(14,'ggggggg','gggggggg','ggg','F','sdfsdf','ES','2018-07-19'),(15,'Holger Adrian','Vidal Falcones',NULL,'M','ESPAM','ES','2018-07-03'),(16,'safsdf','adfadf',NULL,'M',NULL,'ES',NULL),(17,'safsdf','adfadf',NULL,'M',NULL,'ES',NULL),(18,'maron','vera','1314646215','M','Espam MFL','EC','1995-09-11');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,7 +280,7 @@ CREATE TABLE `respuesta` (
   KEY `fk_respuesta_users1_idx` (`users_id`),
   CONSTRAINT `fk_respuesta_foro1` FOREIGN KEY (`idforo`) REFERENCES `foro` (`idforo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_respuesta_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=174 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,6 +289,7 @@ CREATE TABLE `respuesta` (
 
 LOCK TABLES `respuesta` WRITE;
 /*!40000 ALTER TABLE `respuesta` DISABLE KEYS */;
+INSERT INTO `respuesta` VALUES (1,21,2,'hola como han estado','2018-11-11','0'),(171,21,2,'dfffffffffffffff','2018-07-30','0'),(172,21,3,'hohohohohohoh','2018-07-31','0'),(173,21,3,'puto amo','2018-07-31','1');
 /*!40000 ALTER TABLE `respuesta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -302,7 +301,7 @@ DROP TABLE IF EXISTS `respuesta_comentario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `respuesta_comentario` (
-  `idrespuesta_comentario` int(11) NOT NULL,
+  `idrespuesta_comentario` int(11) NOT NULL AUTO_INCREMENT,
   `users_id` int(11) unsigned NOT NULL,
   `idcomentario` int(11) NOT NULL,
   `detalle` varchar(200) DEFAULT NULL,
@@ -373,7 +372,7 @@ CREATE TABLE `users` (
   KEY `fk_users_persona1_idx` (`idpersona`),
   CONSTRAINT `fk_users_persona1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_tipo_usuario1` FOREIGN KEY (`idtipo_usuario`) REFERENCES `tipo_usuario` (`idtipo_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -382,7 +381,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,1,1,NULL,NULL,'avatar/2.png','HolgerVidal','holgervidal91@gmail.com','$2y$10$VOo5bP7NnDv9sC7EonDe2u79V6SSECVX8B3/d6Zo6uPBVYgKxZ9tG','eEujObnArbWZhd7DTNdUtWtdE2VSccHIxIsh39DbyZVrSKxF2G3yH56mk8R5','2018-07-15 05:30:36','2018-07-21 00:17:38'),(11,1,1,NULL,NULL,'avatar/1.png','AdrianVidal','adrian@gmail.com','$2y$10$PpGaRuDMj6Ubgep6OXCCcuiPCDH9CziSpi9RAnFIEnlZEeRuwwtiS','gzvXrmGAqxB53MegLUDiNrCwPLwGNrCBwLyD2KNpfFMpw08QCACqoXDX3BW0','2018-07-15 05:31:27','2018-07-15 05:31:27'),(12,2,1,NULL,NULL,'avatar/1.png','holgervidalnosequemaspornerleaestolodemasescincidencia','aaaa@gmail.com','$2y$10$LlPwlv9r/ZdW7SBALK7lR.5bx/GLQ/5kdgZFDx3VdbHqp7jAy.iu.','LUJIHK8SSer7l6VZxxKrIbxLfyKp587jtG67Dl1lCxs8UBWmvC3rP3W8A9i1','2018-07-15 06:17:33','2018-07-15 06:17:33'),(13,2,1,NULL,NULL,'avatar/1.png','HolgerVidal','holgervidal91@hotmail.com','$2y$10$v1ce/n7P3abTIQJvDUVr1OUu3tt4OmZrO.3eClmeOAfOVmXybxjN6','NpasJpkoQKdL5Owqe65pHcAZLma2K0MR3Hpahx2yfkQsBHYKmf0BBwl3Bcfu','2018-07-16 20:08:48','2018-07-16 20:08:48'),(14,2,1,NULL,NULL,'avatar/1.png','sdfasdfadsfasdf','xx@gmail.com','$2y$10$TLZGxfaIIYRpvYNMNgEFUO2UPg8rKgfX75BmCfTbZAuIA6qKEE1b.','g87rNlM4aJAtCWzBVOStPHTA3E3AkNA2mgJTfVMZbglRekshJOshNkx9Zu24','2018-07-17 03:50:08','2018-07-17 03:50:08'),(15,2,1,NULL,NULL,'avatar/1.png','zxcxczzxczxc','ss@gmail.com','$2y$10$3GHj9AETa3rr2yusxi45a.ZHoGM8THFaYfH9WrYSnDEE/.LFxpAxm','mYWPBpB2ByR8Tsfz2vg4dcPsU1zTG4XXBFhY7T4CPgCzSUXVKPX9aBnE9OME','2018-07-17 03:51:15','2018-07-17 03:51:15'),(16,2,1,NULL,NULL,'avatar/1.png','asdASDASDFADF','hh@gmail.com','$2y$10$H3sotpxSvrfE8BwbYOPb0eBb15fO6R6XNslrgGh5nGe01De8G4XG2','avr8wnb1UyvyCw40L5jDUdrknYCJt1FBkLqiTPjR0rv2sqcbNHDmbYQSAv10','2018-07-17 08:54:54','2018-07-17 08:54:54'),(17,2,1,NULL,NULL,'avatar/1.png','sdfsdfdsfsdsdfdfsdf','sadf@gmail.com','$2y$10$kfwfLmTdCAm6qvZj.lZ9yO3qGA2.lvRs90y/hIXTxGN1AqMWTz2tW','wGz2fiPxvXU0l9YBHupFZQQvwBNINtEHmqntC25PmOG4HbWyZKzFnaUp8G4d','2018-07-17 09:13:01','2018-07-17 09:13:01'),(18,2,1,NULL,NULL,'avatar/0.png','asdasdasasdasd','fff@gamil.com','$2y$10$L5VEmoNEztqCgFP3ZMeQ5OWuiDeTdvFOgZMRcnjSMEConLBJwo4ee','dvw2WQVJMzl3ed1k1l8eTf3WjOnQNdRNOtG9rU2cm0nwq7IEbcrUuL4N7106','2018-07-19 20:25:23','2018-07-19 20:25:23'),(19,2,1,NULL,NULL,'avatar/0.png','ggggggggggggggg','ffff@gmail.com','$2y$10$4R6AwDgdLoqkEI1fevVPlu1/vJgLx3Ba6StEmdbSQ9klRNAY4rmKG','TS8gkSJoDSyCrMOZeg0nniwsPTqi2gTAWGrTSLrrlYe1nInKWi4F2GTOlPvQ','2018-07-19 20:28:43','2018-07-19 20:28:43'),(20,2,15,NULL,NULL,'avatar/1.png','HolgerVidal','julio@gmail.com','$2y$10$of5uPGTw/wm.5B/3FMxY1OWu3.mQyIh4twEoI6wsJQuxoW/08rD72','Cj54fN4XH57v9NohZ0xiAlL6Yp2lYoBUTJgbE0PehhbaTyY1swA3Yc7zZKMj','2018-07-19 23:44:08','2018-07-20 00:19:10');
+INSERT INTO `users` VALUES (10,1,1,NULL,NULL,'avatar/2.png','HolgerVidal','holgervidal91@gmail.com','$2y$10$VOo5bP7NnDv9sC7EonDe2u79V6SSECVX8B3/d6Zo6uPBVYgKxZ9tG','eEujObnArbWZhd7DTNdUtWtdE2VSccHIxIsh39DbyZVrSKxF2G3yH56mk8R5','2018-07-15 05:30:36','2018-07-21 00:17:38'),(11,1,1,NULL,NULL,'avatar/1.png','AdrianVidal','adrian@gmail.com','$2y$10$PpGaRuDMj6Ubgep6OXCCcuiPCDH9CziSpi9RAnFIEnlZEeRuwwtiS','gzvXrmGAqxB53MegLUDiNrCwPLwGNrCBwLyD2KNpfFMpw08QCACqoXDX3BW0','2018-07-15 05:31:27','2018-07-15 05:31:27'),(12,2,1,NULL,NULL,'avatar/1.png','holgervidalnosequemaspornerleaestolodemasescincidencia','aaaa@gmail.com','$2y$10$LlPwlv9r/ZdW7SBALK7lR.5bx/GLQ/5kdgZFDx3VdbHqp7jAy.iu.','LUJIHK8SSer7l6VZxxKrIbxLfyKp587jtG67Dl1lCxs8UBWmvC3rP3W8A9i1','2018-07-15 06:17:33','2018-07-15 06:17:33'),(13,2,1,NULL,NULL,'avatar/1.png','HolgerVidal','holgervidal91@hotmail.com','$2y$10$v1ce/n7P3abTIQJvDUVr1OUu3tt4OmZrO.3eClmeOAfOVmXybxjN6','NpasJpkoQKdL5Owqe65pHcAZLma2K0MR3Hpahx2yfkQsBHYKmf0BBwl3Bcfu','2018-07-16 20:08:48','2018-07-16 20:08:48'),(14,2,1,NULL,NULL,'avatar/1.png','sdfasdfadsfasdf','xx@gmail.com','$2y$10$TLZGxfaIIYRpvYNMNgEFUO2UPg8rKgfX75BmCfTbZAuIA6qKEE1b.','g87rNlM4aJAtCWzBVOStPHTA3E3AkNA2mgJTfVMZbglRekshJOshNkx9Zu24','2018-07-17 03:50:08','2018-07-17 03:50:08'),(15,2,1,NULL,NULL,'avatar/1.png','zxcxczzxczxc','ss@gmail.com','$2y$10$3GHj9AETa3rr2yusxi45a.ZHoGM8THFaYfH9WrYSnDEE/.LFxpAxm','mYWPBpB2ByR8Tsfz2vg4dcPsU1zTG4XXBFhY7T4CPgCzSUXVKPX9aBnE9OME','2018-07-17 03:51:15','2018-07-17 03:51:15'),(16,2,1,NULL,NULL,'avatar/1.png','asdASDASDFADF','hh@gmail.com','$2y$10$H3sotpxSvrfE8BwbYOPb0eBb15fO6R6XNslrgGh5nGe01De8G4XG2','avr8wnb1UyvyCw40L5jDUdrknYCJt1FBkLqiTPjR0rv2sqcbNHDmbYQSAv10','2018-07-17 08:54:54','2018-07-17 08:54:54'),(17,2,1,NULL,NULL,'avatar/1.png','sdfsdfdsfsdsdfdfsdf','sadf@gmail.com','$2y$10$kfwfLmTdCAm6qvZj.lZ9yO3qGA2.lvRs90y/hIXTxGN1AqMWTz2tW','wGz2fiPxvXU0l9YBHupFZQQvwBNINtEHmqntC25PmOG4HbWyZKzFnaUp8G4d','2018-07-17 09:13:01','2018-07-17 09:13:01'),(18,2,1,NULL,NULL,'avatar/0.png','asdasdasasdasd','fff@gamil.com','$2y$10$L5VEmoNEztqCgFP3ZMeQ5OWuiDeTdvFOgZMRcnjSMEConLBJwo4ee','dvw2WQVJMzl3ed1k1l8eTf3WjOnQNdRNOtG9rU2cm0nwq7IEbcrUuL4N7106','2018-07-19 20:25:23','2018-07-19 20:25:23'),(19,2,1,NULL,NULL,'avatar/0.png','ggggggggggggggg','ffff@gmail.com','$2y$10$4R6AwDgdLoqkEI1fevVPlu1/vJgLx3Ba6StEmdbSQ9klRNAY4rmKG','TS8gkSJoDSyCrMOZeg0nniwsPTqi2gTAWGrTSLrrlYe1nInKWi4F2GTOlPvQ','2018-07-19 20:28:43','2018-07-19 20:28:43'),(20,2,15,NULL,NULL,'avatar/1.png','HolgerVidal','julio@gmail.com','$2y$10$of5uPGTw/wm.5B/3FMxY1OWu3.mQyIh4twEoI6wsJQuxoW/08rD72','Cj54fN4XH57v9NohZ0xiAlL6Yp2lYoBUTJgbE0PehhbaTyY1swA3Yc7zZKMj','2018-07-19 23:44:08','2018-07-20 00:19:10'),(21,1,18,NULL,NULL,'avatar/8.png','maronvera','maron.v64@gmail.com','$2y$10$cWBzlwsLwoWha6qLiunMverZOL385ju6cxa2JqLUzp6wqEAvPdPOO','bLfWpkdvcay3YjWYdO3SRvlQdhlwGyLTeSWjuBKG2jRBzDIemtHBhGKyCJm4','2018-07-21 21:04:21','2018-07-31 01:04:42');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -449,4 +448,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-20 17:25:49
+-- Dump completed on 2018-07-30 21:23:27

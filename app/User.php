@@ -34,10 +34,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Respuesta_comentario', 'id','users_id');
     }
 
-}
-
     public function respuestas(){
         return $this->hasMany('App\Respuestas', 'users_id','id');
     }
+
 }
+
 
