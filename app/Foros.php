@@ -15,5 +15,7 @@ class Foros extends Model
         'idforo','users_id','tema', 'fecha','estado_del'
     ]; 
 
-
+    public function respuestas(){
+        return $this->nasMany('App\Respuestas','idrespuesta');
+    }
 }

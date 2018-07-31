@@ -7,8 +7,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    @if(isset($opciones))    
-                        <h1>{{$opciones->titulo1}}</h1>
+                    @if(isset($foro))    
+                        <h1>{{$foro->tema}}</h1>
                     @endif
                     <ul class="breadcrumbs">
                         <li><a href="#">Inicio</a></li> 
@@ -24,10 +24,9 @@
         <div class="container">
             <div class="row"> 
                 <div class="col-md-9">
-                    @include('ventanasInicio.informacion')
                     <div class="comments-area" id="comments">
-                     @include('ventanasInicio.comentarios')  
-                      @include('ventanasInicio.ventanaModalComentario')  
+                     @include('ventanasforo.Respuestas')  
+                      
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -37,7 +36,7 @@
             </div>
          </div> 
     </div>
-    
+
 
     <footer class="footer-1 bg-color-1">
     </footer>
