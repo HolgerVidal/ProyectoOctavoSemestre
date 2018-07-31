@@ -11,6 +11,7 @@ class Comentario extends Model
    protected $primaryKey='idcomentario'; 
    public $timestamps= false;  
 
+
    public function user(){
    	  return $this->belongsTo('App\User', 'users_id', 'id');
     }
