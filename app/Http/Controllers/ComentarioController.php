@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Comentario;
 use Carbon\Carbon;
+use App\Respuesta_comentario;
+use App\InformacionEder;
+use App\Configuracion;
+use Illuminate\Support\Facades\DB;
+
+
 class ComentarioController extends Controller
 {
     /**
@@ -13,10 +19,47 @@ class ComentarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function __construct()
     {
-        //
+       $this->middleware('auth');
     }
+    
+   public function consultaAsc(){
+     
+        $comentario = Comentario::with('user')->get();
+        $respuestac = Comentario::with('respuesta_comentario')->get();
+        $rc = Respuesta_comentario::with('user')->get();
+        $numComenta = DB::table('comentario')->count();
+        $respuesta = Comentario::with('respuesta_comentario')->with('user')->with('respuesta_comentario')->get();
+        $fun=$respuesta->sortByDesc('fecha');
+        
+     return response()->json($fun);
+   }
+
+   public function consultaDesc()
+   {
+       $respuestac = Comentario::with('user')->get();
+       $respuesta = Comentario::with('respuesta_comentario')->with('user')->with('respuesta_comentario')->get();
+       $fun=$respuestac->sortByDesc('idcomentario');
+       return response()->json($fun);
+   }
+   
+   public function llenarRespuesta(){
+     
+        $comentario = Comentario::with('user')->get();
+        $respuestac = Comentario::with('respuesta_comentario')->get();
+        $rc = Respuesta_comentario::with('user')->get();
+        $numComenta = DB::table('comentario')->count();
+        $respuesta = Comentario::with('respuesta_comentario')->with('user')->with('respuesta_comentario')->get();
+        $fun=$rc->sortByDesc('fecha');
+
+        //return view('ventanasInicio.comentarios')->with(['comentario'=>$fun,"respuesta"=>$respuesta,"rc"=>$rc,'numeroDeComentario'=>$numComenta]);   
+        return response()->json($fun);
+   }
+
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +83,9 @@ class ComentarioController extends Controller
         $comentario->detalle=$request->detalle;
         $comentario->users_id=$request->users_id;
         $comentario->fecha=Carbon::now()->toDateTimeString();
-        $comentario->save();
+         if($comentario->save()){
+            return response()->json($comentario);
+         } 
     }
 
     /**
@@ -74,7 +119,10 @@ class ComentarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+          $actualizar= Comentario::find($id);
+          $actualizar->detalle=$request->detalle;
+          $actualizar->save();
+          //return response()->json($actualizar);
     }
 
     /**
@@ -85,6 +133,7 @@ class ComentarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $actualizar= Comentario::find($id);
+         $actualizar->delete();
     }
 }

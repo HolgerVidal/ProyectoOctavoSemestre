@@ -21,9 +21,9 @@
 
                   @if(isset($comentario)) 
                     <i class="fa fa-comments-o"></i>
-                     @foreach($comentario as $n )                                           
+                     @foreach($comentario as $n)                                           
                      @endforeach 
-                     <a href="#">{{$n->idcomentario}} comentarios</a>
+                     <a href="#">xx comentarios</a>
                       
                   @endif  
                    

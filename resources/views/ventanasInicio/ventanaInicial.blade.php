@@ -26,11 +26,13 @@
                 <div class="col-md-9">
                     @include('ventanasInicio.informacion')
                     <div class="comments-area" id="comments">
-                     @include('ventanasInicio.comentarios')    
+                     @include('ventanasInicio.comentarios')  
+                      @include('ventanasInicio.ventanaModalComentario')  
                     </div>
                 </div>
                 <div class="col-md-3">
                     @include('ventanasInicio.seccionDerecha')
+
                 </div>
             </div>
          </div> 

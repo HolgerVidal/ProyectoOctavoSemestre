@@ -2,10 +2,9 @@
 <br>
 <div class="form-group num-comentario">
 	<h4><p id="numero-comentarios" class="n-comentarios"><i class="fa fa-comments-o"></i>
-     @if(isset($comentario)) 
-        @foreach($comentario as $n )                                           
-        @endforeach 
-       {{$n->idcomentario}} 
+     @if(isset($numeroDeComentario)) 
+       
+       {{$numeroDeComentario}}
      @endif
  </p> <p> COMENTARIOS </p></h4>
 </div>
@@ -17,100 +16,135 @@
     <br>
 @else
     <div class="form-group">
+      <form>
     	<label for="commentario"> Añadir Comentario</label>
-    	<textarea class="form-control" id="add-comentario" rows="5" placeholder="Escriba aquí su comentario..."></textarea>
+    	<textarea class="form-control" id="add-comentario" rows="5" placeholder="Escriba aquí su comentario..." required></textarea>
         <input type="" id="id" value="{{ Auth::user()->id }}" hidden>
         <input type="" id="user" value="{{ Auth::user()->name }}" hidden>
-    	<button type="button" class="btn-comentar btn btn-success" id="btn-enviar-com">Enviar</button>
+        <input type="" id="img" value="{{ Auth::user()->img }}" hidden>
+    	<button type="button" class="btn-comentar btn btn-success btn-ms" id="btn-enviar-com">Enviar</button> 
+       
+      </form>
     </div>
 @endguest
-<div class="comments-area">
+
+<div class="comments-area" id="refresh">
+  <div class="panel form-control ">
+  Ordenar:<a   href="#refresh">
+  <i class="fa-sm fa fa-eye " style="margin-left: 2%;"onclick="ordenarDesc()" >
+    Desc
+  </i></a>
+  <a href="#refresh">
+  <i class="fa-sm fa fa-eye " onclick="ordenarAsc()" > Asc</i>
+  </a>
+  </div>
     <ol class="comment-list" id="comments-actuales">
-        @if(isset($comentario))
-             @foreach($comentario as $n )   
-        <li class="comment even thread-even depth-1" id="comment-5">
-                                                    
-                    
+
+      @if(isset($comentario))
+        @foreach($comentario as $n )   
+        <li class="comment even thread-even depth-1" id="eli{{$n->idcomentario}}">    
             <article class="comment-body">
                 <footer class="comment-meta">
                     <div class="comment-author vcard">
-                        <img class="avatar" src="eder/images/news/avatar/2.png" alt="">                        
-                        <b class="fn"><a class="url" href="#">{{$n->idcomentario}}</a></b>                   
+                        <img class="avatar" src="{{$n->user->img}}" alt="">                        
+                        <b class="fn"><a class="url"  data-toggle="tab">{{$n->user->name}} </a></b> 
+                       @guest
+
+                       @else
+
+                        @if(Auth::user()->id == $n->users_id)
+                          <button class="fa panel url form-group alert-sm "  style="margin-bottom: -25px;margin-left: 5px;background: #DCDCDC" data-toggle="modal" data-target="#myModal" onclick="editarComentario({{$n->idcomentario}});" ><a data-toggle="modal" data-target="#myModal" style="color: blue">Edit</a>
+                        </button>
+
+                        @else
+                        
+                        @endif
+                        @endguest 
                     </div><!-- .comment-author -->
                     <div class="comment-metadata">
-                        <a href="#">
-                            <time>
-                               {{$n->fecha}}
-                            </time>
-                        </a>                                                        
+                        <a > 
+                            <time><i class="fa fa-clock-o"></i>
+                                {{$n->fecha}}
+                            </time> 
+                        </a>   
+                       
+                                                                           
                     </div><!-- .comment-metadata -->
                 </footer><!-- .comment-meta -->
-
                 <div class="comment-content">
-                    <p>{{$n->detalle}}</p>
+                    <p id="v{{$n->idcomentario}}">{{$n->detalle}}</p>
                 </div><!-- .comment-content -->
-      
                 <div class="reply">
-                    <a  class="comment-reply-link btn" rel="nofollow" onclick="respuestaComentario({{$n->idcomentario}})"> Responder</a>
-                </div> 
-                <textarea class="form-control" id="add-comentario" rows="0" placeholder="Escriba aquí su comentario..." cols="0"  ></textarea>      
-            </article><!-- .comment-body -->
-             @endforeach
-            @endif
-
-            <ol class="children">
-                <li class="comment even thread-even depth-1" id="comment-5">
-                    <article class="comment-body">
+                    @guest
+                     <a href="{{ route('login') }}" class="comment-reply-link "> Responder</a>
+                     @else
+                     <a class="comment-reply-link btn" onclick="respuestaComentario({{$n->idcomentario}})">Respondesr</a> 
+                    @endguest
+                </div>   
+            </article><!-- .comment-body --><br>
+           
+          <ol class="children" id="x{{$n->idcomentario}}">
+            <!--esta es la parte para las respuesta de los comentarios-->
+              @foreach($n->respuesta_comentario as $nn)  
+               
+               <li class="comment even thread-even depth-1" >
+                    <article class="comment-body" id="eli{{$nn->idrespuesta_comentario}}"> 
                         <footer class="comment-meta">
                             <div class="comment-author vcard">
-                                <img class="avatar" src="eder/images/news/avatar/3.png" alt="">                        
-                                <b class="fn"><a class="url" href="#">Marta Loor</a></b>                  
+                               <img class="avatar" src="{{$nn->user->img}}" alt="">  
+                               <b class="fn"><a class="url" href="#">{{$nn->user->name}}</a></b>
+                               @guest
+
+                               @else
+                                @if(Auth::user()->id == $nn->users_id)
+                                   <button class="fa panel url form-group alert-sm "  style="margin-bottom: -25px;margin-left: 5px;background: #DCDCDC" data-toggle="modal" data-target="#myModal" onclick="editarRespuesta({{$nn->idrespuesta_comentario}});"><a data-toggle="modal" data-target="#myModal" style="color:blue">Edit</a>
+                                  </button>
+                                @else
+                                  
+                                @endif
+                                 @endguest      
                             </div><!-- .comment-author -->
                             <div class="comment-metadata">
                                 <a href="#">
                                     <time>
-                                        09/03/2016 at 10:18 am  
+                                      {{$nn->fecha}} 
                                     </time>
-                                </a>                                                        
+                               </a>                                                    
                             </div><!-- .comment-metadata -->
-                        </footer><!-- .comment-meta -->
-
-                        <div class="comment-content">
-                            <p>Esta es una simple respuesta a un comentario xd xd xd xd xd xd xd xdxd xd 
+                       </footer><!-- .comment-meta -->
+                       <div class="comment-content">
+                           <p id="rc{{$nn->idrespuesta_comentario}}">{{$nn->detalle}} 
                             </p>
-                        </div><!-- .comment-content -->      
-                    </article><!-- .comment-body -->
-                </li>
-            </ol>
-        </li>
-      <!--
-        <li class="comment even thread-even depth-1" id="comment-5">
-            <article class="comment-body">
-                <footer class="comment-meta">
-                    <div class="comment-author vcard">
-                        <img class="avatar" src="eder/images/news/avatar/2.png" alt="">                        
-                        <b class="fn"><a class="url" href="#">Holger Vidal</a></b>                    
-                    </div><!-- .comment-author --><!--
-                    <div class="comment-metadata">
-                        <a href="#">
-                            <time>
-                                09/03/2016
-                            </time>
-                        </a>                                                        
-                    </div><!-- .comment-metadata --><!--
-                </footer><!-- .comment-meta --><!--
+                       </div>
+                    </article>
 
-                <div class="comment-content">
-                    <p>Esta pagina esta bien pero bien fea no me gusta el diseño y la metodologia esta fea ajajjajaja
-					   les recomiendo que mejoren el contenido del sitio y suban los documentos de la metodologia.
-                    </p>
-                </div><!-- .comment-content --><!--
+               </li>             
+            
+             @endforeach
+          </ol>
+          <!--esta es la parte del cuadrito de la respuesta -->
+          <div class="form-row hidden  modal-header form-group "  id="a{{$n->idcomentario}}" >
+                    <div class="alert alert-sm form-group alert-dismissible fade show col-md-12" style="border-top:1px solid #D3D3D3; margin-top: -3px;">
+                        <br>
+                        <div class="form-group col-md-10" style="margin-left: -10px;" >
+                            <textarea class="form-control " id="r{{$n->idcomentario}}" rows="1" placeholder="Escriba aquí su comentario..."  style="height: 40px;" required>
+                            </textarea> 
+                        </div>
+                        <div class="col-md-1" style="margin-left: -12px;" >
+                          @guest 
+                          @else                      
+                            <button class="btn btn-secondary"onclick="respuestas({{$n->idcomentario}},{{ Auth::user()->id}})" ><i class="fa fa-send" style="margin-left:-1px;"></i>
+                           @endguest   
+                        </div>
+                        <div class="col-md-1"></div>
+                        <button type="button" class="close" onclick="havilitarcomentario({{$n->idcomentario}})">
+                            <span aria-hidden="false">&times;</span>
+                        </button>
+                   </div>   
+          </div>
 
-                <div class="reply">
-                    <a href="#" class="comment-reply-link" rel="nofollow">Responder</a>
-                </div>         
-            </article><!-- .comment-body --><!--
-        </li>
-      -->
+        </li> 
+        @endforeach
+      @endif
     </ol>                 
 </div>
