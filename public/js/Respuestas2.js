@@ -39,7 +39,7 @@
                                 '<article class="comment-body">'+
                                     '<footer class="comment-meta">'+
                                         '<div class="comment-author vcard">'+
-                                            '<img class="avatar" src="/eder/images/news/avatar/2.png" alt="">'+                        
+                                            '<img class="avatar" src="'+$('#img').val()+'" alt="">'+                        
                                             '<b class="fn"><a class="url" href="#">'+'@'+$('#name').val()+' </a></b>'+                    
                                         '</div>'+
                                         '<div class="comment-metadata">'+

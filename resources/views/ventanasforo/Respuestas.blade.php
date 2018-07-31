@@ -18,7 +18,8 @@
         
         <input type="" id="users_id" value="{{ Auth::user()->id }}" hidden>
         <input type="" id="idforo" value="{{ $foro->idforo }}" hidden>
-        <input type="" id="name" value="{{ Auth::user()->name }}" hidden>        
+        <input type="" id="name" value="{{ Auth::user()->name }}" hidden>   
+        <input type="" id="img" value="/{{ Auth::user()->img }}" hidden>
                 
         <button type="button" class="btn-comentar btn btn-success" id="btn-nueva-respuesta">Enviar</button>
     </div>
