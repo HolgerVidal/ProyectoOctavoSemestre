@@ -33,11 +33,11 @@ class User extends Authenticatable
      public function respuesta_comentario(){
         return $this->hasMany('App\Respuesta_comentario', 'id','users_id');
     }
-
-}
-
-    public function respuestas(){
+     public function respuestas(){
         return $this->hasMany('App\Respuestas', 'users_id','id');
     }
+
 }
+   
+
 
