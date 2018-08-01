@@ -29,8 +29,10 @@
 @endguest
 
 <div class="comments-area" id="refresh">
+@guest @else
   <div class="panel form-control ">
-  Ordenar:<a   href="#refresh">
+
+   Ordenar:<a   href="#refresh">
   <i class="fa-sm fa fa-eye " style="margin-left: 2%;"onclick="ordenarDesc()" >
     Desc
   </i></a>
@@ -38,6 +40,7 @@
   <i class="fa-sm fa fa-eye " onclick="ordenarAsc()" > Asc</i>
   </a>
   </div>
+  @endguest
     <ol class="comment-list" id="comments-actuales">
 
       @if(isset($comentario))
@@ -124,23 +127,23 @@
           </ol>
           <!--esta es la parte del cuadrito de la respuesta -->
           <div class="form-row hidden  modal-header form-group "  id="a{{$n->idcomentario}}" >
-                    <div class="alert alert-sm form-group alert-dismissible fade show col-md-12" style="border-top:1px solid #D3D3D3; margin-top: -3px;">
-                        <br>
-                        <div class="form-group col-md-10" style="margin-left: -10px;" >
+                  <div class="alert alert-sm form-group alert-dismissible fade show col-md-12" style="border-top:1px solid #D3D3D3; margin-top: -3px;">
+                      <br>
+                      <div class="form-group col-md-10" style="margin-left: -10px;" >
                             <textarea class="form-control " id="r{{$n->idcomentario}}" rows="1" placeholder="Escriba aquí su comentario..."  style="height: 40px;" required>
                             </textarea> 
-                        </div>
-                        <div class="col-md-1" style="margin-left: -12px;" >
+                      </div>
+                      <div class="col-md-1" style="margin-left: -12px;" >
                           @guest 
                           @else                      
                             <button class="btn btn-secondary"onclick="respuestas({{$n->idcomentario}},{{ Auth::user()->id}})" ><i class="fa fa-send" style="margin-left:-1px;"></i>
                            @endguest   
-                        </div>
-                        <div class="col-md-1"></div>
+                      </div>
+                      <div class="col-md-1"></div>
                         <button type="button" class="close" onclick="havilitarcomentario({{$n->idcomentario}})">
                             <span aria-hidden="false">&times;</span>
                         </button>
-                   </div>   
+                  </div>   
           </div>
 
         </li> 

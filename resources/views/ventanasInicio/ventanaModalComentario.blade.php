@@ -1,6 +1,6 @@
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top: 70px;">
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top: 70px;">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       
@@ -11,7 +11,6 @@
           </button>
         </div>
         <div class="modal-body">
-          
             <input type="textarea" name="" id="idc" value="" hidden>
             <input type="textarea" name="" id="saber" value="" hidden>
             <div class="form-group " style="margin-left: -10px;" >

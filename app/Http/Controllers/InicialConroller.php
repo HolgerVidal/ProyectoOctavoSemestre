@@ -28,9 +28,10 @@ class InicialConroller extends Controller
         $respuesta = Comentario::with('respuesta_comentario')->get();
         $rc = Respuesta_comentario::with('user')->get();
         $numComenta = DB::table('comentario')->count();
-        $fun=$respuesta->sortByDesc('users_id');
+        $fun=$respuesta->sortByDesc('idcomentario');
         $_foros=Foros::all();
 
          return view('ventanasInicio.ventanaInicial')->with(["contenidoInicial"=>$contenido, 'opciones'=>$opciones,'comentario'=>$fun,"respuesta"=>$respuesta,"rc"=>$rc,'numeroDeComentario'=>$numComenta,'_foros'=>$_foros]);
     }
 }
+ 

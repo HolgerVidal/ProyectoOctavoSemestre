@@ -11,7 +11,7 @@
 |
 */
 
-
+ 
 Route::get('/ventanaeder', 'HomeController@eder')->name('eder');
 
 
@@ -36,6 +36,7 @@ Route::get('/foros/lista','ForosController@showForos')->name('listaforos');
 Route::resource('/addComentario', 'ComentarioController');
 Route::get('/consultaComentarioAsc','ComentarioController@consultaAsc');
 Route::get('/consultaComentarioDesc','comentarioController@consultaDesc');
+
 
 //Ruta para Respuesta_de-los_Comentarios 
 Route::resource('/addRespuesta', 'Respuesta_comentarioController');
@@ -73,8 +74,6 @@ Route::post('/forosrespuestas/elininar','RespuestasController@eliminar');
  
 */ 
  
-//Ruta para comentarios 
-Route::resource('/addComentario', 'ComentarioController');
 
 
 // rutas pjara la edicion del perfil del usuario

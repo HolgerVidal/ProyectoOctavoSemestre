@@ -1,43 +1,10 @@
-var ruta='/PROYECTO_8vo-master/public/';
+
 
 $('#btn-enviar-com').click(function(){
 
     if ( $('#add-comentario').val()!="") { 
         guardarComentarios();
-}
-
-	var comentarios = $('#comments-actuales').html();
-	guardarComentarios();
-	var nuevos_comentarios = 
-	    '<li class="comment even thread-even depth-1" id="comment-5">'+
-            '<article class="comment-body">'+
-                '<footer class="comment-meta">'+
-                    '<div class="comment-author vcard">'+
-                        '<img class="avatar" src="eder/images/news/avatar/2.png" alt="">'+                        
-                        '<b class="fn"><a class="url" href="#">'+$('#user').val()+' </a></b>'+                    
-                    '</div>'+
-                    '<div class="comment-metadata">'+
-                        '<a href="#">'+
-                            '<time>'+
-                                '09/03/2018'+
-                            '</time>'+
-                        '</a>'+                                                        
-                    '</div>'+
-                '</footer>'+
-                '<div class="comment-content">'+
-                    '<p>'+
-                    $('#add-comentario').val()+
-                    '</p>'+
-                '</div>'+
-                '<div class="reply">'+
-                    '<a href="#" class="comment-reply-link" rel="nofollow">Responder</a>'+
-                '</div>'+         
-            '</article>'+
-        '</li>'+
-        comentarios
-	;
-
-	$('#comments-actuales').append(nuevos_comentarios);//append
+    }
 
 });
 
@@ -91,7 +58,7 @@ $('#btn-enviar-com').click(function(){
                                     '</p>'+
                                 '</div>'+
                                 ' <ol class="children" id="x'+requestData.idcomentario+'">'+
-                                '<li>'+
+                                '<li  class="comment even thread-even depth-1">'+
                                 '</li>'+
                                 '</ol>'+
                                 '<div class="reply">'+
@@ -124,11 +91,11 @@ $('#btn-enviar-com').click(function(){
                  //todo---------------------
 
                  $('#add-comentario').val("");
-                 $('#id').val("");   
+                // $('#id').val("");   
             } 
         });    
 
-    }
+ }
   
                  
 
@@ -136,7 +103,7 @@ $('#btn-enviar-com').click(function(){
    function respuestaComentario(id){
      
      $('#a'+id).attr('class','form-row  modal-header form-group');
-       $('#a'+id).show(200); 
+      $('#a'+id).show(200); 
    }
 
   function havilitarcomentario(id){
@@ -144,7 +111,8 @@ $('#btn-enviar-com').click(function(){
   }
 
 //funcion para ingresar las respuestas
-   function respuestas(idires,iduser){
+function respuestas(idires,iduser){
+    if ($('#r'+idires).val()!="") {
     $.ajaxSetup({
         headers: {
             //esta se pone porque si no, no funciona
@@ -158,14 +126,14 @@ $('#btn-enviar-com').click(function(){
         idcomentario:idires,
     }
     $.ajax({
-        url: '/PROYECTO_8vo-master/public/addRespuesta', // Url que se envia para la solicitud
+        url: 'addRespuesta', // Url que se envia para la solicitud
         method: "POST",             // Tipo de solicitud que se enviará, llamado como método
         data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
         success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
         { 
             $('#r'+idires).val("");
             $('#a'+idires).hide(122);       
-              var res= '<article class="comment-body" id="eli'+requestData.idrespuesta_comentario+'">'+
+              var res='<article class="comment-body" id="eli'+requestData.idrespuesta_comentario+'">'+
                         '<footer class="comment-meta">'+
                             '<div class="comment-author vcard">'+
                               '  <img class="avatar" src="'+$('#img').val()+'" alt=""> '+                       
@@ -187,11 +155,13 @@ $('#btn-enviar-com').click(function(){
                             '<p id="rc'+requestData.idrespuesta_comentario+'"> '+requestData.detalle+
                           '  </p>'+
                        ' </div>'+
-                   ' </article>';
+                   '</article>';
+                   
                  
         $('#x'+idires).append(res);
         } 
         }); 
+    }
      
   }
 
@@ -213,26 +183,29 @@ $('#btn-enviar-com').click(function(){
 
 //editar Respuesta
 function actualizar(){
-  //alert("estamos aqui y no sabemos");
+  
     if ( $('#comentario').val()!="") { 
          
         if ($('#saber').val()== 1) {
-          modificarRespuesta();
+            modificarRespuesta();
         }else{modificarComentario();}
     }
 }
 
 function eliminar(){
-  //alert("estamos aqui y no sabemos");
+  
     if ( $('#comentario').val()!="") { 
          
         if ($('#saber').val()== 1) {
           eliminarRespuesta();
-        }else{eliminarComentario();}
+        }else{
+          eliminarComentario(); 
+        }
     }
 }
 //modifica las respuesta
 function modificarRespuesta(){
+    
   var idrespuesta_comentario = $('#idc').val();
  
         $.ajaxSetup({
@@ -249,18 +222,19 @@ function modificarRespuesta(){
             data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
             //dataType: 'json',
             success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
-            {
-             
+            { 
              var idr=$('#idc').val();
              $("#rc"+idr).html($("#comentario").val());
-
+             //mensaje ="No puedes eliminar debido a que tienes respuesta!!";
+                mensaje_error("#errorc", "Estimado usuario", "Su comentario ha sido modificado con éxito.", 9000, "info");
             }
         });
 }
 
 //modificar Comentario
 function modificarComentario(){
-  var idcomentario = $('#idc').val();
+   
+    var idcomentario = $('#idc').val();
  
         $.ajaxSetup({
             headers: {
@@ -279,6 +253,7 @@ function modificarComentario(){
             { 
              var idc=$('#idc').val();
              $("#v"+idc).html($("#comentario").val());
+                mensaje_error("#errorc", "Estimado usuario", "Su comentario ha sido modificado con éxito.", 9000, "info");
             }
         });
 }
@@ -301,11 +276,14 @@ function eliminarRespuesta(){
                 var idr=$('#idc').val();
                 $("#comentario").val("");
                 $("#eli"+idr).hide();
-                $("#myModal").close();
-               
-
-               
+                 mensaje_error("#errorc", "Estimado usuario", "Su comentario ha sido eliminado con éxito.", 10000, "info");
+          
             },  
+            error:function () {
+              
+                mensaje ="¡¡Por favor actualizar e intente nuevamente!!";
+                mensaje_error("#errorc", "ADVERTENCIA", mensaje, 10000, "info");
+            }
         });
  }
 
@@ -325,8 +303,9 @@ function eliminarComentario(){
             success: function (data) {
                 
              var idc=$('#idc').val();
-             $("#comentario").val(" ");
+             $("#comentario").val("");
              $("#eli"+idc).hide();
+                mensaje_error("#errorc", "Estimado usuario", "Su comentario ha sido eliminado con éxito.", 9000, "info");
             },  
             error:function () {
               
@@ -338,151 +317,70 @@ function eliminarComentario(){
  }
 
 
-function ordenarAsc(){
-    var idu=$('#id').val();
-    var id=0;
-      $('#comments-actuales').html('');
-      //alert("tiene que borrarse"); 
-       //$("#tablaChoferes td").parent().remove(); // limpia el tbody de la tabla
-        $.get('consultaComentarioAsc', function (data) {
-            $.each(data, function(i, item) { 
-              if (idu==item.users_id) {
-                 
-                 $('#comments-actuales').append(
-                   
-                    '<li class="comment even thread-even depth-1" id="comment-5">'+
-                         '<article class="comment-body">'+
-                               '<footer class="comment-meta">'+
-                                    '<div class="comment-author vcard">'+
-                                         '<img class="avatar" src="'+item.user.img+'" alt="">'+                        
-                                         '<b class="fn"><a class="url" href="#">'+item.user.name+' </a></b>'+
-                                         
-                                         ' <button class="fa panel url form-group alert-sm "  style="margin-bottom: -25px;margin-left: 5px;background: #DCDCDC" data-toggle="modal" data-target="#myModal" onclick="editarComentario('+item.idcomentario+');" >'+
-                                             '<a data-toggle="modal" data-target="#myModal" style="color: green">Edit</a>'+
-                                         '</button>'+  
-                                                        
-                                    '</div>'+
-                                    '<div class="comment-metadata">'+
-                                         '<a href="#">'+
-                                            '<time>'+
-                                               item.fecha+
-                                             '</time>'+
-                                           '</a>'+                                                        
-                                    '</div>'+
-                               '</footer>'+
-                                '<div class="comment-content">'+
-                                      '<p id="v'+item.idcomentario+'">'+
-                                           item.detalle+
-                                      '</p>'+
-                                '</div>'+
-                                ' <ol class="children" id="x'+item.idcomentario+'">'+
-                                   '<li>'+
-                                      $.get('llenarRespuesta', function (data) {
-                                            llenar(data)  
-                                      })+
-                                   '</li>'+
-                                '</ol>'+  
-                                     '<div class="reply">'+
-                                         ' <a  class="comment-reply-link btn" rel="nofollow" onclick="respuestaComentario('+item.idcomentario+')"> Responder</a>'+
-                                     '</div>'+ 
-                                     '<div class="form-row hidden  modal-header form-group "  id="a'+item.idcomentario+'" >'+
-                                         '<div class="alert alert-sm form-group alert-dismissible fade show col-md-12" style="border-top:1px solid #D3D3D3; margin-top: -3px;">'+
-                                             '<br>'+
-                                             '<div class="form-group col-md-10" style="margin-left: -10px;">'+ 
-                                                 '<textarea class="form-control " id="r'+item.idcomentario+'" rows="1" placeholder="Escriba aquí su comentario..."  style="height: 40px;">'+
-                                                 '</textarea>'+
-                                             '</div>'+
-                                             '<div class="col-md-1" style="margin-left: -12px;">'+
-                                                 '<button class="btn btn-secundariy" onclick="respuestas('+item.idcomentario+','+item.users_id+')" ><i class="fa fa-send" style="margin-left:-1px;"></i>'+
-                                             '</div>'+
-                                             '<div class="col-md-1"></div>'+
-                                             '<button type="button" class="close" onclick="havilitarcomentario('+item.idcomentario+')">'+
-                                                 '<span aria-hidden="false">&times;</span>'+
-                                             '</button>'+
-                                        '</div> '+      
-                         '</article>'+
-                    '</li>'
-                  );
-              }else{
-                   
-                   $('#comments-actuales').append(
-                     
-                      '<li class="comment even thread-even depth-1" id="comment-5">'+
-                           '<article class="comment-body">'+
-                                 '<footer class="comment-meta">'+
-                                      '<div class="comment-author vcard">'+
-                                           '<img class="avatar" src="'+item.user.img+'" alt="">'+                        
-                                           '<b class="fn"><a class="url" href="#">'+item.user.name+' </a></b>'+
-               
-                                      '</div>'+
-                                      '<div class="comment-metadata">'+
-                                           '<a href="#">'+
-                                              '<time>'+
-                                                 item.fecha+
-                                               '</time>'+
-                                             '</a>'+                                                        
-                                      '</div>'+
-                                 '</footer>'+
-                                       '<div class="comment-content">'+
-                                          '<p id="v'+item.idcomentario+'">'+
-                                             item.detalle+
-                                          '</p>'+
-                                       '</div>'+
-                                       ' <ol class="children" id="x'+item.idcomentario+'">'+
-                                       '<li>'+
-
-                                       '</li>'+
-                                       '</ol>'+  
-                                       '<div class="reply">'+
-                                           ' <a  class="comment-reply-link btn" rel="nofollow" onclick="respuestaComentario('+item.idcomentario+')"> Responder</a>'+
-                                       '</div>'+ 
-                                       '<div class="form-row hidden  modal-header form-group "  id="a'+item.idcomentario+'" >'+
-                                           '<div class="alert alert-sm form-group alert-dismissible fade show col-md-12" style="border-top:1px solid #D3D3D3; margin-top: -3px;">'+
-                                               '<br>'+
-                                               '<div class="form-group col-md-10" style="margin-left: -10px;">'+ 
-                                                   '<textarea class="form-control " id="r'+item.idcomentario+'" rows="1" placeholder="Escriba aquí su comentario..."  style="height: 40px;">'+
-                                                   '</textarea>'+
-                                               '</div>'+
-                                               '<div class="col-md-1" style="margin-left: -12px;">'+
-                                                   '<button class="btn btn-secundariy" onclick="respuestas('+item.idcomentario+','+item.users_id+')" ><i class="fa fa-send" style="margin-left:-1px;"></i>'+
-                                               '</div>'+
-                                               '<div class="col-md-1"></div>'+
-                                               '<button type="button" class="close" onclick="havilitarcomentario('+item.idcomentario+')">'+
-                                                   '<span aria-hidden="false">&times;</span>'+
-                                               '</button>'+
-                                          '</div> '+    
-                           '</article>'+
-                      '</li>'
-                    );
-              }
-
-            }); 
-        });   
- }
-
-
- function ordenarDesc(){
+function ordenarDesc(){
      var idu=$('#id').val();
        $('#comments-actuales').html('');
-       alert("tiene que borrarse DC"); 
-        //$("#tablaChoferes td").parent().remove(); // limpia el tbody de la tabla
          $.get('consultaComentarioDesc', function (data) { 
              $.each(data, function(i, item) { 
-               if (idu==item.users_id) {
-                   
-                  $('#comments-actuales').append(
-                    
-                     '<li class="comment even thread-even depth-1" id="comment-5">'+
+               if (idu==item.users_id){
+                $('#comments-actuales').append(
+                   '<li class="comment even thread-even depth-1" id="eli'+item.idcomentario+'">'+
+                        '<article class="comment-body">'+
+                              '<footer class="comment-meta">'+
+                                   '<div class="comment-author vcard">'+
+                                        '<img class="avatar" src="'+item.img+'" alt="">'+                        
+                                        '<b class="fn"><a class="url" href="#">'+item.name+' </a></b>'+
+                                        ' <button class="fa panel url form-group alert-sm  " id="btnE'+item.idcomentario+'"  style="margin-bottom: -25px;margin-left: 5px;background: #DCDCDC" data-toggle="modal" data-target="#myModal" onclick="editarComentario('+item.idcomentario+');" >'+
+                                            '<a data-toggle="modal" data-target="#myModal" style="color: blue">Edit</a>'+
+                                        '</button>'+             
+                                   '</div>'+
+                                   '<div class="comment-metadata">'+
+                                        '<a href="#">'+
+                                           '<time>'+
+                                              item.fecha+
+                                            '</time>'+
+                                          '</a>'+                                                        
+                                   '</div>'+
+                              '</footer>'+
+                               '<div class="comment-content">'+
+                                     '<p id="v'+item.idcomentario+'">'+
+                                          item.detalle+
+                                     '</p>'+
+                               '</div>'+
+                               ' <ol class="children" id="x'+item.idcomentario+'">'+
+                                  '<li class="comment even thread-even depth-1">'+
+                                  '</li>'+
+                               '</ol>'+  
+                                    '<div class="reply">'+
+                                        ' <a  class="comment-reply-link btn" rel="nofollow" onclick="respuestaComentario('+item.idcomentario+')"> Responder</a>'+
+                                    '</div>'+ 
+                                    '<div class="form-row hidden  modal-header form-group "  id="a'+item.idcomentario+'" >'+
+                                        '<div class="alert alert-sm form-group alert-dismissible fade show col-md-12" style="border-top:1px solid #D3D3D3; margin-top: -3px;">'+
+                                            '<br>'+
+                                            '<div class="form-group col-md-10" style="margin-left: -10px;">'+ 
+                                                '<textarea class="form-control " id="r'+item.idcomentario+'" rows="1" placeholder="Escriba aquí su comentario..."  style="height: 40px;">'+
+                                                '</textarea>'+
+                                            '</div>'+
+                                            '<div class="col-md-1" style="margin-left: -12px;">'+
+                                                '<button class="btn btn-secundariy" onclick="respuestas('+item.idcomentario+','+idu+')" ><i class="fa fa-send" style="margin-left:-1px;"></i>'+
+                                            '</div>'+
+                                            '<div class="col-md-1"></div>'+
+                                            '<button type="button" class="close" onclick="havilitarcomentario('+item.idcomentario+')">'+
+                                                '<span aria-hidden="false">&times;</span>'+
+                                            '</button>'+
+                                       '</div> '+      
+                        '</article>'+
+                   '</li>'
+                 );
+               }else{
+                 $('#comments-actuales').append(
+                     '<li class="comment even thread-even depth-1" id="eli'+item.idcomentario+'">'+
                           '<article class="comment-body">'+
                                 '<footer class="comment-meta">'+
                                      '<div class="comment-author vcard">'+
-                                          '<img class="avatar" src="'+item.user.img+'" alt="">'+                        
-                                          '<b class="fn"><a class="url" href="#">'+item.user.name+' </a></b>'+
-                                          
-                                          ' <button class="fa panel url form-group alert-sm "  style="margin-bottom: -25px;margin-left: 5px;background: #DCDCDC" data-toggle="modal" data-target="#myModal" onclick="editarComentario('+item.idcomentario+');" >'+
-                                              '<a data-toggle="modal" data-target="#myModal" style="color: green">Edit</a>'+
-                                          '</button>'+  
-                                                         
+                                          '<img class="avatar" src="'+item.img+'" alt="">'+                        
+                                          '<b class="fn"><a class="url" href="#">'+item.name+' </a></b>'+
+                                                          
                                      '</div>'+
                                      '<div class="comment-metadata">'+
                                           '<a href="#">'+
@@ -498,10 +396,7 @@ function ordenarAsc(){
                                        '</p>'+
                                  '</div>'+
                                  ' <ol class="children" id="x'+item.idcomentario+'">'+
-                                    '<li>'+
-                                       $.get('llenarRespuesta', function (data) {
-                                             llenar(data)  
-                                       })+
+                                    '<li class="comment even thread-even depth-1">'+
                                     '</li>'+
                                  '</ol>'+  
                                       '<div class="reply">'+
@@ -515,7 +410,7 @@ function ordenarAsc(){
                                                   '</textarea>'+
                                               '</div>'+
                                               '<div class="col-md-1" style="margin-left: -12px;">'+
-                                                  '<button class="btn btn-secundariy" onclick="respuestas('+item.idcomentario+','+item.users_id+')" ><i class="fa fa-send" style="margin-left:-1px;"></i>'+
+                                                  '<button class="btn btn-secundariy" onclick="respuestas('+item.idcomentario+','+idu+')" ><i class="fa fa-send" style="margin-left:-1px;"></i>'+
                                               '</div>'+
                                               '<div class="col-md-1"></div>'+
                                               '<button type="button" class="close" onclick="havilitarcomentario('+item.idcomentario+')">'+
@@ -525,102 +420,164 @@ function ordenarAsc(){
                           '</article>'+
                      '</li>'
                    );
-               }else{
-                    
-                    $('#comments-actuales').append(
-                      
-                       '<li class="comment even thread-even depth-1" id="comment-5">'+
-                            '<article class="comment-body">'+
-                                  '<footer class="comment-meta">'+
-                                       '<div class="comment-author vcard">'+
-                                            '<img class="avatar" src="'+item.user.img+'" alt="">'+                        
-                                            '<b class="fn"><a class="url" href="#">'+item.user.name+' </a></b>'+
-                
-                                       '</div>'+
-                                       '<div class="comment-metadata">'+
-                                            '<a href="#">'+
-                                               '<time>'+
-                                                  item.fecha+
-                                                '</time>'+
-                                              '</a>'+                                                        
-                                       '</div>'+
-                                  '</footer>'+
-                                        '<div class="comment-content">'+
-                                           '<p id="v'+item.idcomentario+'">'+
-                                              item.detalle+
-                                           '</p>'+
-                                        '</div>'+
-                                        ' <ol class="children" id="x'+item.idcomentario+'">'+
-                                        '<li>'+
-
-                                        '</li>'+
-                                        '</ol>'+  
-                                        '<div class="reply">'+
-                                            ' <a  class="comment-reply-link btn" rel="nofollow" onclick="respuestaComentario('+item.idcomentario+')"> Responder</a>'+
-                                        '</div>'+ 
-                                        '<div class="form-row hidden  modal-header form-group "  id="a'+item.idcomentario+'" >'+
-                                            '<div class="alert alert-sm form-group alert-dismissible fade show col-md-12" style="border-top:1px solid #D3D3D3; margin-top: -3px;">'+
-                                                '<br>'+
-                                                '<div class="form-group col-md-10" style="margin-left: -10px;">'+ 
-                                                    '<textarea class="form-control " id="r'+item.idcomentario+'" rows="1" placeholder="Escriba aquí su comentario..."  style="height: 40px;">'+
-                                                    '</textarea>'+
-                                                '</div>'+
-                                                '<div class="col-md-1" style="margin-left: -12px;">'+
-                                                    '<button class="btn btn-secundariy" onclick="respuestas('+item.idcomentario+','+item.users_id+')" ><i class="fa fa-send" style="margin-left:-1px;"></i>'+
-                                                '</div>'+
-                                                '<div class="col-md-1"></div>'+
-                                                '<button type="button" class="close" onclick="havilitarcomentario('+item.idcomentario+')">'+
-                                                    '<span aria-hidden="false">&times;</span>'+
-                                                '</button>'+
-                                           '</div> '+    
-                            '</article>'+
-                       '</li>'
-                     );
                }
-
+                 
+                  
              }); 
+            $.get('llenarRespuesta', function (data) {
+              llenar(data)  
+            })
          });   
-  }
+}
+
+function ordenarAsc(){
+     var idu=$('#id').val();
+       $('#comments-actuales').html('');
+         $.get('consultaComentarioAsc', function (data) { 
+             $.each(data, function(i, item) { 
+               if (idu==item.users_id){
+                $('#comments-actuales').append(
+                   '<li class="comment even thread-even depth-1" id="eli'+item.idcomentario+'">'+
+                        '<article class="comment-body">'+
+                              '<footer class="comment-meta">'+
+                                   '<div class="comment-author vcard">'+
+                                        '<img class="avatar" src="'+item.img+'" alt="">'+                        
+                                        '<b class="fn"><a class="url" href="#">'+item.name+' </a></b>'+
+                                        ' <button class="fa panel url form-group alert-sm  " id="btnE'+item.idcomentario+'"  style="margin-bottom: -25px;margin-left: 5px;background: #DCDCDC" data-toggle="modal" data-target="#myModal" onclick="editarComentario('+item.idcomentario+');" >'+
+                                            '<a data-toggle="modal" data-target="#myModal" style="color: blue">Edit</a>'+
+                                        '</button>'+             
+                                   '</div>'+
+                                   '<div class="comment-metadata">'+
+                                        '<a href="#">'+
+                                           '<time>'+
+                                              item.fecha+
+                                            '</time>'+
+                                          '</a>'+                                                        
+                                   '</div>'+
+                              '</footer>'+
+                               '<div class="comment-content">'+
+                                     '<p id="v'+item.idcomentario+'">'+
+                                          item.detalle+
+                                     '</p>'+
+                               '</div>'+
+                               ' <ol class="children" id="x'+item.idcomentario+'">'+
+                                  '<li class="comment even thread-even depth-1">'+
+                                  '</li>'+
+                               '</ol>'+  
+                                    '<div class="reply">'+
+                                        ' <a  class="comment-reply-link btn" rel="nofollow" onclick="respuestaComentario('+item.idcomentario+')"> Responder</a>'+
+                                    '</div>'+ 
+                                    '<div class="form-row hidden  modal-header form-group "  id="a'+item.idcomentario+'" >'+
+                                        '<div class="alert alert-sm form-group alert-dismissible fade show col-md-12" style="border-top:1px solid #D3D3D3; margin-top: -3px;">'+
+                                            '<br>'+
+                                            '<div class="form-group col-md-10" style="margin-left: -10px;">'+ 
+                                                '<textarea class="form-control " id="r'+item.idcomentario+'" rows="1" placeholder="Escriba aquí su comentario..."  style="height: 40px;">'+
+                                                '</textarea>'+
+                                            '</div>'+
+                                            '<div class="col-md-1" style="margin-left: -12px;">'+
+                                                '<button class="btn btn-secundariy" onclick="respuestas('+item.idcomentario+','+idu+')" ><i class="fa fa-send" style="margin-left:-1px;"></i>'+
+                                            '</div>'+
+                                            '<div class="col-md-1"></div>'+
+                                            '<button type="button" class="close" onclick="havilitarcomentario('+item.idcomentario+')">'+
+                                                '<span aria-hidden="false">&times;</span>'+
+                                            '</button>'+
+                                       '</div> '+      
+                        '</article>'+
+                   '</li>'
+                );
+               }else{
+                 $('#comments-actuales').append(
+                     '<li class="comment even thread-even depth-1" id="eli'+item.idcomentario+'">'+
+                          '<article class="comment-body">'+
+                                '<footer class="comment-meta">'+
+                                     '<div class="comment-author vcard">'+
+                                          '<img class="avatar" src="'+item.img+'" alt="">'+                        
+                                          '<b class="fn"><a class="url" href="#">'+item.name+' </a></b>'+                   
+                                     '</div>'+
+                                     '<div class="comment-metadata">'+
+                                          '<a href="#">'+
+                                             '<time>'+
+                                                item.fecha+
+                                              '</time>'+
+                                            '</a>'+                                                        
+                                     '</div>'+
+                                '</footer>'+
+                                 '<div class="comment-content">'+
+                                       '<p id="v'+item.idcomentario+'">'+
+                                            item.detalle+
+                                       '</p>'+
+                                 '</div>'+
+                                 ' <ol class="children" id="x'+item.idcomentario+'">'+
+                                    '<li class="comment even thread-even depth-1">'+
+                                    '</li>'+
+                                 '</ol>'+  
+                                      '<div class="reply">'+
+                                          ' <a  class="comment-reply-link btn" rel="nofollow" onclick="respuestaComentario('+item.idcomentario+')"> Responder</a>'+
+                                      '</div>'+ 
+                                      '<div class="form-row hidden  modal-header form-group "  id="a'+item.idcomentario+'" >'+
+                                          '<div class="alert alert-sm form-group alert-dismissible fade show col-md-12" style="border-top:1px solid #D3D3D3; margin-top: -3px;">'+
+                                              '<br>'+
+                                              '<div class="form-group col-md-10" style="margin-left: -10px;">'+ 
+                                                  '<textarea class="form-control " id="r'+item.idcomentario+'" rows="1" placeholder="Escriba aquí su comentario..."  style="height: 40px;">'+
+                                                  '</textarea>'+
+                                              '</div>'+
+                                              '<div class="col-md-1" style="margin-left: -12px;">'+
+                                                  '<button class="btn btn-secundariy" onclick="respuestas('+item.idcomentario+','+idu+')" ><i class="fa fa-send" style="margin-left:-1px;"></i>'+
+                                              '</div>'+
+                                              '<div class="col-md-1"></div>'+
+                                              '<button type="button" class="close" onclick="havilitarcomentario('+item.idcomentario+')">'+
+                                                  '<span aria-hidden="false">&times;</span>'+
+                                              '</button>'+
+                                         '</div> '+      
+                          '</article>'+
+                     '</li>'
+                   );
+               }
+                 
+                  
+             }); 
+            $.get('llenarRespuesta', function (data) {
+              llenar(data)  
+            })
+         });   
+}
+
 
 
 $(document).ready(function() { 
 
-     //  alert("hola no tienes errores");
+    //  alert("hola no tienes errores");
  });
 
  //para mostrar las respuestas
-
-     function llenar(datos){
+function llenar(datos){
      $.each(datos, function(i, item) { 
-
        $('#x'+item.idcomentario).append(
-   
-            '<article class="comment-body">'+
-                                    '<footer class="comment-meta">'+
-                                        '<div class="comment-author vcard">'+
-                                          '  <img class="avatar" src="'+item.user.img+'" alt=""> '+                       
-                                        '    <b class="fn"><a class="url" href="#">'+item.user.name+'</a></b> '+ 
-                                         '<button class="fa panel url form-group alert-sm "  style="margin-bottom: -25px;margin-left: 5px;background: #DCDCDC" data-toggle="modal" data-target="#myModal" onclick="editarRespuesta('+item.idrespuesta_comentario+');">'+
-                                         '<a data-toggle="modal" data-target="#myModal" style="color:green">Edit</a>'+
-                                       ' </button> ' +              
-                                        '</div><!-- .comment-author -->'+
-                                        '<div class="comment-metadata">'+
-                                            '<a href="#">'+
-                                                '<time>'+
-                                                    item.fecha+
-                                               ' </time>'+
-                                         '   </a> '+                                                    
-                                      '  </div><!-- .comment-metadata -->'+
-                                   ' </footer><!-- .comment-meta -->'+
-
-                                   ' <div class="comment-content">'+
-                                        '<p id="rc'+item.idrespuesta_comentario+'"> '+item.detalle+
-                                      '  </p>'+
-                                   ' </div>'+
-                               ' </article>'
+            '<article class="comment-body" id="eli'+item.idrespuesta_comentario+'">'+
+                        '<footer class="comment-meta">'+
+                            '<div class="comment-author vcard">'+
+                                    '<img class="avatar" src="'+item.user.img+'" alt=""> '+                       
+                                    '<b class="fn"><a class="url" href="#">'+item.user.name+'</a></b> '+ 
+                                    '<button class="fa panel url form-group alert-sm "  style="margin-bottom: -25px;margin-left: 5px;background: #DCDCDC" data-toggle="modal" data-target="#myModal" onclick="editarRespuesta('+item.idrespuesta_comentario+');">'+
+                                        '<a data-toggle="modal" data-target="#myModal" style="color:blue">Edit</a>'+
+                                    '</button>'+              
+                            '</div><!-- .comment-author -->'+
+                            '<div class="comment-metadata">'+
+                                    '<a href="#">'+
+                                        '<time>'+
+                                           item.fecha+
+                                        '</time>'+
+                                    '</a> '+                                                    
+                            '</div><!-- .comment-metadata -->'+
+                        '</footer><!-- .comment-meta -->'+
+                        '<div class="comment-content">'+
+                            '<p id="rc'+item.idrespuesta_comentario+'"> '+item.detalle+
+                            '</p>'+
+                        '</div>'+
+            ' </article>'
          ) 
        }); 
-     } 
+} 
 
 
 

@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -25,36 +25,28 @@ class ComentarioController extends Controller
        $this->middleware('auth');
     }
     
-   public function consultaAsc(){
-     
-        $comentario = Comentario::with('user')->get();
-        $respuestac = Comentario::with('respuesta_comentario')->get();
-        $rc = Respuesta_comentario::with('user')->get();
-        $numComenta = DB::table('comentario')->count();
-        $respuesta = Comentario::with('respuesta_comentario')->with('user')->with('respuesta_comentario')->get();
-        $fun=$respuesta->sortByDesc('fecha');
+   public function consultaAsc(){ 
+       $comentario = DB::table('comentario')
+                     ->join('users', 'comentario.users_id', '=', 'users.id')
+                     ->orderBy('idcomentario', 'asc')
+                     ->get();
+       return response()->json($comentario);
         
-     return response()->json($fun);
    }
 
    public function consultaDesc()
    {
-       $respuestac = Comentario::with('user')->get();
-       $respuesta = Comentario::with('respuesta_comentario')->with('user')->with('respuesta_comentario')->get();
-       $fun=$respuestac->sortByDesc('idcomentario');
-       return response()->json($fun);
+       $comentario = DB::table('comentario')
+                     ->join('users', 'comentario.users_id', '=', 'users.id')
+                     ->orderBy('idcomentario', 'desc')
+                     ->get();
+       return response()->json($comentario);
    }
    
    public function llenarRespuesta(){
      
-        $comentario = Comentario::with('user')->get();
-        $respuestac = Comentario::with('respuesta_comentario')->get();
         $rc = Respuesta_comentario::with('user')->get();
-        $numComenta = DB::table('comentario')->count();
-        $respuesta = Comentario::with('respuesta_comentario')->with('user')->with('respuesta_comentario')->get();
-        $fun=$rc->sortByDesc('fecha');
-
-        //return view('ventanasInicio.comentarios')->with(['comentario'=>$fun,"respuesta"=>$respuesta,"rc"=>$rc,'numeroDeComentario'=>$numComenta]);   
+        $fun=$rc->sortByDesc('idrespuesta_comentario');  
         return response()->json($fun);
    }
 
